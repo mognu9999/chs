@@ -58,15 +58,25 @@ def make_png(zh, path):
 p = pick()
 make_png(p["zh"], "last.png")
 
-srv = api("photos.getWallUploadServer", group_id=GROUP)
-with open("last.png", "rb") as f:
-    up = requests.post(srv["upload_url"], files={"photo": f}, timeout=60).json()
-saved = api("photos.saveWallPhoto", group_id=GROUP,
-            photo=up["photo"], server=up["server"], hash=up["hash"])[0]
-attachment = f"photo{saved['owner_id']}_{saved['id']}"
+attachment = None
+try:
+    srv = api("docs.getWallUploadServer", group_id=GROUP)
+    with open("last.png", "rb") as f:
+        up = requests.post(srv["upload_url"], files={"file": f}, timeout=60).json()
+    saved = api("docs.save", file=up["file"], title="chinese.png")
+    if isinstance(saved, list):
+        d = saved[0]
+    else:
+        d = saved.get("doc", saved)
+    attachment = f"doc{d['owner_id']}_{d['id']}"
+except Exception as e:
+    print("Картинка не приложена, публикую только текст:", e)
 
 message = f'{p["zh"]}\n\n{p["pinyin"]}\n\n{p["ru_sound"]}\n\n{p["ru"]}\n\n#китайский #китайскийязык'
-api("wall.post", owner_id=-GROUP, from_group=1, message=message, attachments=attachment)
+params = dict(owner_id=-GROUP, from_group=1, message=message)
+if attachment:
+    params["attachments"] = attachment
+api("wall.post", **params)
 
 history.append({"zh": p["zh"], "kind": p["kind"], "ts": now.isoformat()})
 history = history[-3000:]
