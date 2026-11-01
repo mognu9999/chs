@@ -77,8 +77,23 @@ def tags_for(kind):
     return " ".join(CORE_TAGS + [KIND_TAGS.get(kind, "")] + EXTRA_TAGS).replace("  ", " ")
 
 
+def lesson_lines(p):
+    """Примеры урока по строкам: иероглиф — пиньинь — перевод (если части совпадают по числу)."""
+    zh = p["zh"].split()
+    py = [x.strip() for x in p["pinyin"].split("·")] if "·" in p["pinyin"] else p["pinyin"].split()
+    ru = [x.strip() for x in p["ru"].split("·")]
+    if len(zh) == len(py) == len(ru):
+        return "\n".join(f"{a} — {b} — {c}" for a, b, c in zip(zh, py, ru))
+    return None
+
+
 def build_message(p):
-    parts = [p["zh"], p["pinyin"], p["ru_sound"], p["ru"]]
+    if p["kind"] == "pinyin":
+        parts = [f"🔤 Урок пиньиня: {p.get('title', 'произношение')}"]
+        lines = lesson_lines(p)
+        parts.append(lines or "\n\n".join([p["zh"], p["pinyin"], p["ru"]]))
+    else:
+        parts = [p["zh"], p["pinyin"], p["ru_sound"], p["ru"]]
     if p.get("note"):
         parts.append("💡 " + p["note"])
     parts.append(tags_for(p["kind"]))
