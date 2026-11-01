@@ -1,4 +1,4 @@
-import json, os, random, time
+import json, math, os, random, time
 import datetime as dt
 from collections import Counter
 import requests
@@ -8,18 +8,27 @@ GROUP = int(os.environ["VK_GROUP_ID"])
 V = "5.199"
 
 # ---------- Хэштеги (правьте здесь) ----------
+BRAND_TAG = "#оооятебяникогданепредам3"
 CORE_TAGS = ["#китайский", "#китайскийязык", "#выучитькитайский"]
 KIND_TAGS = {"phrase": "#фразы", "word": "#слова", "pinyin": "#пиньинь", "digest": "#повторение"}
-EXTRA_TAGS = ["#оооятебяникогданепредам3", "#ии", "#искусственныйинтеллект"]
+EXTRA_TAGS = [BRAND_TAG, "#ии", "#искусственныйинтеллект"]
 
 # ---------- Доли типов записей ----------
 KIND_WEIGHTS = {"phrase": 45, "word": 50, "pinyin": 5}
 
-# ---------- Воскресный пост-повторение ----------
-# Выходит в воскресенье в 16:00 UTC (19:00 по Москве) вместо обычной записи.
+# ---------- Воскресное повторение ----------
+# В воскресенье начиная с 16:00 UTC (19:00 по Москве) три записи подряд вместо обычных.
 DIGEST_HOUR_UTC = 16
-DIGEST_ITEMS = 10
+DIGEST_PARTS = 3
+DIGEST_MAX_ITEMS = 5
 FORCE_DIGEST = os.environ.get("FORCE_DIGEST") == "1"
+
+# ---------- Ограничение VK ----------
+# В ленте VK показывает первые 14 строк записи без вложений, остальное прячет под «Показать ещё».
+MAX_LINES = 14
+LINE_WIDTH = 46  # осторожная оценка: сколько знаков помещается в строку на экране телефона
+
+CIRCLED = "①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳"
 
 
 def api(method, **params):
@@ -65,6 +74,136 @@ recent = Counter(h["zh"] for h in history if ts(h) > week_ago)
 total = Counter(h["zh"] for h in history)
 
 
+# ---------- Вёрстка с учётом лимита строк ----------
+def width(s):
+    return sum(2 if "\u4e00" <= c <= "\u9fff" else 1 for c in s)
+
+
+def est_lines(text):
+    return sum(max(1, math.ceil(width(line) / LINE_WIDTH)) for line in text.split("\n"))
+
+
+def pick_fitting(candidates):
+    """Первый вариант, который помещается в лимит строк; иначе самый компактный."""
+    for c in candidates:
+        if est_lines(c) <= MAX_LINES:
+            return c
+    return candidates[-1]
+
+
+def tags(kind, level):
+    kt = KIND_TAGS.get(kind, "")
+    if level == 0:
+        t = CORE_TAGS + [kt] + EXTRA_TAGS
+    elif level == 1:
+        t = [CORE_TAGS[0], kt, BRAND_TAG]
+    else:
+        t = [CORE_TAGS[0], BRAND_TAG]
+    return " ".join(x for x in t if x)
+
+
+def join(*parts, sep="\n\n"):
+    return sep.join(x for x in parts if x)
+
+
+def block(n, zh, py, snd, ru):
+    """Полный блок: 4 строки, как в обычной записи."""
+    return "\n".join([f"{CIRCLED[n - 1]} {zh}", py, snd, ru])
+
+
+def compact_item(n, zh, py, snd, ru):
+    """Компактный блок: 2 строки (3, если не помещается)."""
+    first = f"{CIRCLED[n - 1]} {zh} · {py} · {snd}"
+    if width(first) <= LINE_WIDTH:
+        return first + "\n" + ru
+    return f"{CIRCLED[n - 1]} {zh}\n{py} · {snd}\n{ru}"
+
+
+def build_word_or_phrase(p):
+    kind = p["kind"]
+    four = [p["zh"], p["pinyin"], p["ru_sound"], p["ru"]]
+    note = ("💡 " + p["note"]) if p.get("note") else ""
+    cands = []
+    for body in ("\n\n".join(four), "\n".join(four)):
+        for lvl in (0, 1, 2):
+            cands.append(join(body, note, tags(kind, lvl)))
+    cands.append(join("\n".join(four), tags(kind, 2)))
+    return pick_fitting(cands)
+
+
+def lesson_items(p):
+    zh = p["zh"].split()
+    py = [x.strip() for x in p["pinyin"].split("·")]
+    snd = [x.strip() for x in p["ru_sound"].split("·")]
+    ru = [x.strip() for x in p["ru"].split("·")]
+    if len(zh) == len(py) == len(snd) == len(ru):
+        return list(zip(zh, py, snd, ru))
+    return None
+
+
+def build_lesson(p):
+    header = f"🔤 Урок пиньиня: {p.get('title', 'произношение')}"
+    note = ("💡 " + p["note"]) if p.get("note") else ""
+    items = lesson_items(p)
+    if not items:
+        return join(header, p["zh"], p["pinyin"], p["ru"], note, tags("pinyin", 2))
+    blocks = [block(i, *t) for i, t in enumerate(items, 1)]
+    compact = [compact_item(i, *t) for i, t in enumerate(items, 1)]
+    cands = []
+    for body, sep in (("\n\n".join(blocks), "\n\n"), ("\n\n".join(compact), "\n\n"),
+                      ("\n".join(compact), "\n\n"), ("\n".join(compact), "\n")):
+        for lvl in (1, 2):
+            cands.append(join(header, body, note, tags("pinyin", lvl), sep=sep))
+    return pick_fitting(cands)
+
+
+def build_message(p):
+    return build_lesson(p) if p["kind"] == "pinyin" else build_word_or_phrase(p)
+
+
+# ---------- Воскресное повторение ----------
+def digest_state():
+    today = f"{now:%Y-%m-%d}"
+    done = [h for h in history if h.get("kind") == "digest" and h["zh"].startswith(f"digest-{today}-")]
+    return today, done
+
+
+def digest_pool(done):
+    used = {z for h in done for z in h.get("items", [])}
+    seen, items = set(), []
+    for h in history:
+        if h.get("kind") == "digest" or ts(h) <= week_ago or h["zh"] in seen:
+            continue
+        p = by_zh.get(h["zh"])
+        if p and p["kind"] in ("phrase", "word"):
+            seen.add(h["zh"])
+            items.append(p)
+    random.Random(f"{now:%Y-%m-%d}").shuffle(items)
+    return [p for p in items if p["zh"] not in used]
+
+
+def compose_digest(chosen, part):
+    header = f"📚 Повторяем слова недели · {part}/{DIGEST_PARTS}"
+    body = "\n\n".join(compact_item(i, p["zh"], p["pinyin"], p["ru_sound"], p["ru"])
+                       for i, p in enumerate(chosen, 1))
+    prompt = "✍️ Закройте перевод и вспомните его."
+    cands = [join(header, body, prompt, tags("digest", lvl)) for lvl in (1, 2)]
+    return pick_fitting(cands)
+
+
+def build_digest(pool, part):
+    chosen = []
+    for p in pool:
+        trial = chosen + [p]
+        if chosen and est_lines(compose_digest(trial, part)) > MAX_LINES:
+            break
+        chosen = trial
+        if len(chosen) >= DIGEST_MAX_ITEMS:
+            break
+    return compose_digest(chosen, part), [p["zh"] for p in chosen]
+
+
+# ---------- Выбор записи ----------
 def pick():
     kind = random.choices(list(KIND_WEIGHTS), weights=list(KIND_WEIGHTS.values()))[0]
     allowed = [p for p in phrases if recent[p["zh"]] < 2]
@@ -73,72 +212,15 @@ def pick():
     return random.choice([p for p in pool if total[p["zh"]] == least])
 
 
-def tags_for(kind):
-    return " ".join(CORE_TAGS + [KIND_TAGS.get(kind, "")] + EXTRA_TAGS).replace("  ", " ")
+today, done = digest_state()
+digest_due = (FORCE_DIGEST or (now.weekday() == 6 and now.hour >= DIGEST_HOUR_UTC)) and len(done) < DIGEST_PARTS
+pool = digest_pool(done) if digest_due else []
 
-
-def lesson_lines(p):
-    """Примеры урока по строкам: иероглиф — пиньинь — перевод (если части совпадают по числу)."""
-    zh = p["zh"].split()
-    py = [x.strip() for x in p["pinyin"].split("·")] if "·" in p["pinyin"] else p["pinyin"].split()
-    ru = [x.strip() for x in p["ru"].split("·")]
-    if len(zh) == len(py) == len(ru):
-        return "\n".join(f"{a} — {b} — {c}" for a, b, c in zip(zh, py, ru))
-    return None
-
-
-def build_message(p):
-    if p["kind"] == "pinyin":
-        parts = [f"🔤 Урок пиньиня: {p.get('title', 'произношение')}"]
-        lines = lesson_lines(p)
-        parts.append(lines or "\n\n".join([p["zh"], p["pinyin"], p["ru"]]))
-    else:
-        parts = [p["zh"], p["pinyin"], p["ru_sound"], p["ru"]]
-    if p.get("note"):
-        parts.append("💡 " + p["note"])
-    parts.append(tags_for(p["kind"]))
-    return "\n\n".join(parts)
-
-
-def digest_items():
-    """Слова и фразы, опубликованные за неделю (без уроков пиньиня), по порядку выхода."""
-    seen, items = set(), []
-    for h in history:
-        if ts(h) <= week_ago or h["zh"] in seen:
-            continue
-        p = by_zh.get(h["zh"])
-        if p and p["kind"] in ("phrase", "word"):
-            seen.add(h["zh"])
-            items.append(p)
-    if len(items) > DIGEST_ITEMS:
-        keep = set(random.sample(range(len(items)), DIGEST_ITEMS))
-        items = [p for i, p in enumerate(items) if i in keep]
-    return items
-
-
-def digest_due():
-    if FORCE_DIGEST:
-        return True
-    if now.weekday() != 6 or now.hour < DIGEST_HOUR_UTC:
-        return False
-    already = any(h.get("kind") == "digest" and ts(h) > now - dt.timedelta(days=6) for h in history)
-    return not already
-
-
-def build_digest(items):
-    lines = [f'{i}. {p["zh"]} — {p["pinyin"]} — {p["ru"]}' for i, p in enumerate(items, 1)]
-    return "\n\n".join([
-        "📚 Повторяем слова недели",
-        "\n".join(lines),
-        "✍️ Закройте правую часть и вспомните перевод. Сколько получилось? Напишите в комментариях!",
-        tags_for("digest"),
-    ])
-
-
-items = digest_items() if digest_due() else []
-if len(items) >= 3:
-    api("wall.post", owner_id=-GROUP, from_group=1, message=build_digest(items))
-    entry = {"zh": f"digest-{now:%Y-%m-%d}", "kind": "digest", "ts": now.isoformat()}
+if len(pool) >= 2:
+    part = len(done) + 1
+    message, item_ids = build_digest(pool, part)
+    api("wall.post", owner_id=-GROUP, from_group=1, message=message)
+    entry = {"zh": f"digest-{today}-{part}", "kind": "digest", "ts": now.isoformat(), "items": item_ids}
 else:
     p = pick()
     api("wall.post", owner_id=-GROUP, from_group=1, message=build_message(p))
