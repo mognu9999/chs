@@ -1,8 +1,10 @@
 name: vk-post
+
 on:
   schedule:
-    - cron: "0 */4 * * *"   # UTC: 0,4,8,12,16,20 (по МСК это 3,7,11,15,19,23)
-  workflow_dispatch:         # кнопка ручного запуска для теста
+    # Каждые 2 часа в :07 по UTC. Публикация выходит в ближайшую минуту :09/:19/:29/:39/:49/:59.
+    - cron: "7 */2 * * *"
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -12,15 +14,13 @@ concurrency: vk-post
 jobs:
   post:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-          cache: pip
-      - name: Шрифты и cairo
-        run: sudo apt-get update && sudo apt-get install -y fonts-noto-cjk libcairo2
-      - run: pip install -r requirements.txt
+      - run: pip install requests
       - name: Публикация
         run: python post.py
         env:
@@ -31,4 +31,4 @@ jobs:
           git config user.name "bot"
           git config user.email "bot@users.noreply.github.com"
           git add history.json
-          git diff --cached --quiet || (git commit -m "history" && git push)
+          git diff --cached --quiet || (git commit -m "history" && git pull --rebase && git push)
