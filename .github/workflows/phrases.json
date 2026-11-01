@@ -1,0 +1,22 @@
+[
+ {"zh":"你好","pinyin":"Nǐ hǎo","ru_sound":"ни хао","ru":"Привет","kind":"phrase"},
+ {"zh":"谢谢","pinyin":"Xièxie","ru_sound":"сесе","ru":"Спасибо","kind":"phrase"},
+ {"zh":"不客气","pinyin":"Bú kèqi","ru_sound":"бу кэчи","ru":"Не за что","kind":"phrase"},
+ {"zh":"吃了吗？","pinyin":"Chī le ma?","ru_sound":"чи лэ ма","ru":"Ты уже поел? (традиционное приветствие, вроде «как дела?»)","kind":"phrase"},
+ {"zh":"慢慢来","pinyin":"Mànmàn lái","ru_sound":"маньмань лай","ru":"Не торопись, всё по порядку","kind":"phrase"},
+ {"zh":"加油","pinyin":"Jiāyóu","ru_sound":"цзяю","ru":"Давай! Держись! (буквально «добавь масла»)","kind":"phrase"},
+ {"zh":"没问题","pinyin":"Méi wèntí","ru_sound":"мэй вэньти","ru":"Без проблем","kind":"phrase"},
+ {"zh":"辛苦了","pinyin":"Xīnkǔ le","ru_sound":"синькý лэ","ru":"Спасибо за труды (говорят после работы или помощи)","kind":"phrase"},
+ {"zh":"好久不见","pinyin":"Hǎojiǔ bú jiàn","ru_sound":"хао цзю бу цзянь","ru":"Давно не виделись","kind":"phrase"},
+ {"zh":"一路平安","pinyin":"Yílù píng'ān","ru_sound":"илу пинъань","ru":"Счастливого пути","kind":"phrase"},
+ {"zh":"生日快乐","pinyin":"Shēngrì kuàilè","ru_sound":"шэнжи куайлэ","ru":"С днём рождения","kind":"phrase"},
+ {"zh":"我也想你","pinyin":"Wǒ yě xiǎng nǐ","ru_sound":"во йе сян ни","ru":"Я тоже скучаю по тебе","kind":"phrase"},
+ {"zh":"马马虎虎","pinyin":"Mǎmǎ hǔhǔ","ru_sound":"мама хуху","ru":"Так себе, нормально (буквально «лошадь-лошадь, тигр-тигр»)","kind":"phrase"},
+ {"zh":"干杯","pinyin":"Gānbēi","ru_sound":"ганьбэй","ru":"За здоровье! (буквально «осушить бокал»)","kind":"phrase"},
+ {"zh":"缘分","pinyin":"Yuánfèn","ru_sound":"юаньфэнь","ru":"Судьба, предопределённая связь между людьми","kind":"word"},
+ {"zh":"面子","pinyin":"Miànzi","ru_sound":"мяньцзы","ru":"«Лицо»: репутация, достоинство, уважение в глазах других","kind":"word"},
+ {"zh":"关系","pinyin":"Guānxi","ru_sound":"гуаньси","ru":"Связи, отношения (важное понятие в деловой культуре)","kind":"word"},
+ {"zh":"朋友","pinyin":"Péngyou","ru_sound":"пэнъю","ru":"Друг","kind":"word"},
+ {"zh":"水","pinyin":"Shuǐ","ru_sound":"шуй","ru":"Вода","kind":"word"},
+ {"zh":"随便","pinyin":"Suíbiàn","ru_sound":"суйбянь","ru":"Как хочешь, всё равно","kind":"word"}
+]
