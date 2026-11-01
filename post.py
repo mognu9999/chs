@@ -23,7 +23,7 @@ def load(path, default):
 
 phrases = load("phrases.json", [])
 history = load("history.json", [])
-now = dt.datetime.utcnow()
+now = dt.datetime.now(dt.timezone.utc).replace(tzinfo=None)
 week_ago = now - dt.timedelta(days=7)
 
 recent = Counter(h["zh"] for h in history if dt.datetime.fromisoformat(h["ts"]) > week_ago)
@@ -38,7 +38,7 @@ def pick():
     return random.choice([p for p in pool if total[p["zh"]] == least])
 
 def make_png(zh, path):
-    n = 8  # максимум иероглифов в строке
+    n = 8
     lines = [zh[i:i + n] for i in range(0, len(zh), n)]
     size = min(260, int(900 / max(len(l) for l in lines)), int(800 / len(lines)))
     lh = size * 1.25
@@ -64,10 +64,7 @@ try:
     with open("last.png", "rb") as f:
         up = requests.post(srv["upload_url"], files={"file": f}, timeout=60).json()
     saved = api("docs.save", file=up["file"], title="chinese.png")
-    if isinstance(saved, list):
-        d = saved[0]
-    else:
-        d = saved.get("doc", saved)
+    d = saved[0] if isinstance(saved, list) else saved.get("doc", saved)
     attachment = f"doc{d['owner_id']}_{d['id']}"
 except Exception as e:
     print("Картинка не приложена, публикую только текст:", e)
