@@ -7773,5 +7773,2673 @@
   "ru": "Проходить; суффикс опыта",
   "kind": "word",
   "note": "После глагола: 我去过中国 — я бывал в Китае."
+ },
+ {
+  "zh": "阿姨",
+  "pinyin": "Āyí",
+  "ru_sound": "а и",
+  "ru": "Тётя; няня (вежливо о женщине)",
+  "kind": "word",
+  "note": "Так вежливо обращаются к женщине постарше, не обязательно к родственнице."
+ },
+ {
+  "zh": "叔叔",
+  "pinyin": "Shūshu",
+  "ru_sound": "шу шу",
+  "ru": "Дядя (вежливо о мужчине постарше)",
+  "kind": "word"
+ },
+ {
+  "zh": "舅舅",
+  "pinyin": "Jiùjiu",
+  "ru_sound": "цзиоу цзиоу",
+  "ru": "Дядя (брат матери)",
+  "kind": "word"
+ },
+ {
+  "zh": "姑姑",
+  "pinyin": "Gūgu",
+  "ru_sound": "гу гу",
+  "ru": "Тётя (сестра отца)",
+  "kind": "word"
+ },
+ {
+  "zh": "外婆",
+  "pinyin": "Wàipó",
+  "ru_sound": "вай по",
+  "ru": "Бабушка (по матери)",
+  "kind": "word"
+ },
+ {
+  "zh": "外公",
+  "pinyin": "Wàigōng",
+  "ru_sound": "вай гун",
+  "ru": "Дедушка (по матери)",
+  "kind": "word"
+ },
+ {
+  "zh": "亲戚",
+  "pinyin": "Qīnqi",
+  "ru_sound": "цинь ци",
+  "ru": "Родственник",
+  "kind": "word"
+ },
+ {
+  "zh": "父母",
+  "pinyin": "Fùmǔ",
+  "ru_sound": "фу му",
+  "ru": "Родители",
+  "kind": "word"
+ },
+ {
+  "zh": "宝宝",
+  "pinyin": "Bǎobao",
+  "ru_sound": "бао бао",
+  "ru": "Малыш, детка",
+  "kind": "word",
+  "note": "Нежное обращение к ребёнку и к любимому человеку."
+ },
+ {
+  "zh": "宝贝",
+  "pinyin": "Bǎobèi",
+  "ru_sound": "бао бэй",
+  "ru": "Сокровище, дорогой (дорогая)",
+  "kind": "word"
+ },
+ {
+  "zh": "对象",
+  "pinyin": "Duìxiàng",
+  "ru_sound": "дуэй сян",
+  "ru": "Партнёр; объект",
+  "kind": "word",
+  "note": "找对象 — искать пару."
+ },
+ {
+  "zh": "夫妻",
+  "pinyin": "Fūqī",
+  "ru_sound": "фу ци",
+  "ru": "Супруги",
+  "kind": "word"
+ },
+ {
+  "zh": "婚礼",
+  "pinyin": "Hūnlǐ",
+  "ru_sound": "хуэнь ли",
+  "ru": "Свадьба",
+  "kind": "word"
+ },
+ {
+  "zh": "结婚",
+  "pinyin": "Jiéhūn",
+  "ru_sound": "цзе хуэнь",
+  "ru": "Жениться, выходить замуж",
+  "kind": "word"
+ },
+ {
+  "zh": "离婚",
+  "pinyin": "Líhūn",
+  "ru_sound": "ли хуэнь",
+  "ru": "Развестись",
+  "kind": "word"
+ },
+ {
+  "zh": "约会",
+  "pinyin": "Yuēhuì",
+  "ru_sound": "юэ хуэй",
+  "ru": "Свидание",
+  "kind": "word"
+ },
+ {
+  "zh": "朋友圈",
+  "pinyin": "Péngyouquān",
+  "ru_sound": "пэн йоу цюэнь",
+  "ru": "Лента друзей в WeChat",
+  "kind": "word",
+  "note": "Раздел, где делятся фото и новостями."
+ },
+ {
+  "zh": "烤鸭",
+  "pinyin": "Kǎoyā",
+  "ru_sound": "као я",
+  "ru": "Жареная утка (по-пекински)",
+  "kind": "word"
+ },
+ {
+  "zh": "炒饭",
+  "pinyin": "Chǎofàn",
+  "ru_sound": "чао фань",
+  "ru": "Жареный рис",
+  "kind": "word"
+ },
+ {
+  "zh": "炒面",
+  "pinyin": "Chǎomiàn",
+  "ru_sound": "чао миэнь",
+  "ru": "Жареная лапша",
+  "kind": "word"
+ },
+ {
+  "zh": "馒头",
+  "pinyin": "Mántou",
+  "ru_sound": "мань тоу",
+  "ru": "Маньтоу (булочка на пару без начинки)",
+  "kind": "word"
+ },
+ {
+  "zh": "粥",
+  "pinyin": "Zhōu",
+  "ru_sound": "чжоу",
+  "ru": "Рисовая каша",
+  "kind": "word"
+ },
+ {
+  "zh": "油条",
+  "pinyin": "Yóutiáo",
+  "ru_sound": "йоу тяо",
+  "ru": "Ютяо (жареная палочка из теста)",
+  "kind": "word",
+  "note": "Обычно завтракают ею с соевым молоком."
+ },
+ {
+  "zh": "豆浆",
+  "pinyin": "Dòujiāng",
+  "ru_sound": "доу цзян",
+  "ru": "Соевое молоко",
+  "kind": "word"
+ },
+ {
+  "zh": "汤圆",
+  "pinyin": "Tāngyuán",
+  "ru_sound": "тан юэнь",
+  "ru": "Танъюань (клейкие рисовые шарики)",
+  "kind": "word"
+ },
+ {
+  "zh": "粽子",
+  "pinyin": "Zòngzi",
+  "ru_sound": "цзун цзы",
+  "ru": "Цзунцзы (рис в листьях)",
+  "kind": "word"
+ },
+ {
+  "zh": "点心",
+  "pinyin": "Diǎnxin",
+  "ru_sound": "диэнь синь",
+  "ru": "Лёгкая закуска, выпечка",
+  "kind": "word"
+ },
+ {
+  "zh": "零食",
+  "pinyin": "Língshí",
+  "ru_sound": "лин шы",
+  "ru": "Снэки, перекус",
+  "kind": "word"
+ },
+ {
+  "zh": "冰淇淋",
+  "pinyin": "Bīngqílín",
+  "ru_sound": "бин ци линь",
+  "ru": "Мороженое",
+  "kind": "word"
+ },
+ {
+  "zh": "巧克力",
+  "pinyin": "Qiǎokèlì",
+  "ru_sound": "цяо кэ ли",
+  "ru": "Шоколад",
+  "kind": "word"
+ },
+ {
+  "zh": "糖果",
+  "pinyin": "Tángguǒ",
+  "ru_sound": "тан гуо",
+  "ru": "Конфеты",
+  "kind": "word"
+ },
+ {
+  "zh": "花生",
+  "pinyin": "Huāshēng",
+  "ru_sound": "хуа шэн",
+  "ru": "Арахис",
+  "kind": "word"
+ },
+ {
+  "zh": "葡萄",
+  "pinyin": "Pútao",
+  "ru_sound": "пу тао",
+  "ru": "Виноград",
+  "kind": "word"
+ },
+ {
+  "zh": "橙子",
+  "pinyin": "Chéngzi",
+  "ru_sound": "чэн цзы",
+  "ru": "Апельсин",
+  "kind": "word"
+ },
+ {
+  "zh": "草莓",
+  "pinyin": "Cǎoméi",
+  "ru_sound": "цао мэй",
+  "ru": "Клубника",
+  "kind": "word"
+ },
+ {
+  "zh": "西餐",
+  "pinyin": "Xīcān",
+  "ru_sound": "си цань",
+  "ru": "Европейская кухня",
+  "kind": "word",
+  "note": "Буквально «западная еда»."
+ },
+ {
+  "zh": "中餐",
+  "pinyin": "Zhōngcān",
+  "ru_sound": "чжун цань",
+  "ru": "Китайская кухня",
+  "kind": "word"
+ },
+ {
+  "zh": "菜",
+  "pinyin": "Cài",
+  "ru_sound": "цай",
+  "ru": "Блюдо; овощи",
+  "kind": "word",
+  "note": "Слово используют и для овощей, и для готовых блюд."
+ },
+ {
+  "zh": "菜单",
+  "pinyin": "Càidān",
+  "ru_sound": "цай дань",
+  "ru": "Меню",
+  "kind": "word"
+ },
+ {
+  "zh": "服务员",
+  "pinyin": "Fúwùyuán",
+  "ru_sound": "фу у юэнь",
+  "ru": "Официант",
+  "kind": "word",
+  "note": "Зовут так: 服务员!"
+ },
+ {
+  "zh": "餐厅",
+  "pinyin": "Cāntīng",
+  "ru_sound": "цань тин",
+  "ru": "Ресторан",
+  "kind": "word"
+ },
+ {
+  "zh": "咖啡馆",
+  "pinyin": "Kāfēiguǎn",
+  "ru_sound": "ка фэй гуань",
+  "ru": "Кафе",
+  "kind": "word"
+ },
+ {
+  "zh": "奶茶",
+  "pinyin": "Nǎichá",
+  "ru_sound": "най ча",
+  "ru": "Молочный чай",
+  "kind": "word",
+  "note": "Любимый напиток молодёжи: чай с молоком и шариками тапиоки."
+ },
+ {
+  "zh": "白酒",
+  "pinyin": "Báijiǔ",
+  "ru_sound": "бай цзиоу",
+  "ru": "Байцзю (крепкий китайский алкоголь)",
+  "kind": "word"
+ },
+ {
+  "zh": "红酒",
+  "pinyin": "Hóngjiǔ",
+  "ru_sound": "хун цзиоу",
+  "ru": "Красное вино",
+  "kind": "word"
+ },
+ {
+  "zh": "味道",
+  "pinyin": "Wèidao",
+  "ru_sound": "вэй дао",
+  "ru": "Вкус",
+  "kind": "word"
+ },
+ {
+  "zh": "新鲜",
+  "pinyin": "Xīnxiān",
+  "ru_sound": "синь сиэнь",
+  "ru": "Свежий",
+  "kind": "word"
+ },
+ {
+  "zh": "好喝",
+  "pinyin": "Hǎohē",
+  "ru_sound": "хао хэ",
+  "ru": "Вкусно (о напитке)",
+  "kind": "word",
+  "note": "Как 好吃, только для того, что пьют."
+ },
+ {
+  "zh": "饿",
+  "pinyin": "È",
+  "ru_sound": "э",
+  "ru": "Голодный",
+  "kind": "word"
+ },
+ {
+  "zh": "渴",
+  "pinyin": "Kě",
+  "ru_sound": "кэ",
+  "ru": "Хотеть пить",
+  "kind": "word"
+ },
+ {
+  "zh": "胖",
+  "pinyin": "Pàng",
+  "ru_sound": "пан",
+  "ru": "Полный",
+  "kind": "word"
+ },
+ {
+  "zh": "瘦",
+  "pinyin": "Shòu",
+  "ru_sound": "шоу",
+  "ru": "Худой",
+  "kind": "word"
+ },
+ {
+  "zh": "减肥",
+  "pinyin": "Jiǎnféi",
+  "ru_sound": "цзиэнь фэй",
+  "ru": "Худеть, сбрасывать вес",
+  "kind": "word"
+ },
+ {
+  "zh": "洗手",
+  "pinyin": "Xǐshǒu",
+  "ru_sound": "си шоу",
+  "ru": "Мыть руки",
+  "kind": "word"
+ },
+ {
+  "zh": "刷牙",
+  "pinyin": "Shuāyá",
+  "ru_sound": "шуа я",
+  "ru": "Чистить зубы",
+  "kind": "word"
+ },
+ {
+  "zh": "毛巾",
+  "pinyin": "Máojīn",
+  "ru_sound": "мао цзинь",
+  "ru": "Полотенце",
+  "kind": "word"
+ },
+ {
+  "zh": "牙膏",
+  "pinyin": "Yágāo",
+  "ru_sound": "я гао",
+  "ru": "Зубная паста",
+  "kind": "word"
+ },
+ {
+  "zh": "肥皂",
+  "pinyin": "Féizào",
+  "ru_sound": "фэй цзао",
+  "ru": "Мыло",
+  "kind": "word"
+ },
+ {
+  "zh": "洗衣机",
+  "pinyin": "Xǐyījī",
+  "ru_sound": "си и цзи",
+  "ru": "Стиральная машина",
+  "kind": "word"
+ },
+ {
+  "zh": "冰箱",
+  "pinyin": "Bīngxiāng",
+  "ru_sound": "бин сян",
+  "ru": "Холодильник",
+  "kind": "word"
+ },
+ {
+  "zh": "空调",
+  "pinyin": "Kōngtiáo",
+  "ru_sound": "кун тяо",
+  "ru": "Кондиционер",
+  "kind": "word"
+ },
+ {
+  "zh": "沙发",
+  "pinyin": "Shāfā",
+  "ru_sound": "ша фа",
+  "ru": "Диван",
+  "kind": "word"
+ },
+ {
+  "zh": "被子",
+  "pinyin": "Bèizi",
+  "ru_sound": "бэй цзы",
+  "ru": "Одеяло",
+  "kind": "word"
+ },
+ {
+  "zh": "枕头",
+  "pinyin": "Zhěntou",
+  "ru_sound": "чжэнь тоу",
+  "ru": "Подушка",
+  "kind": "word"
+ },
+ {
+  "zh": "垃圾桶",
+  "pinyin": "Lājītǒng",
+  "ru_sound": "ла цзи тун",
+  "ru": "Мусорное ведро",
+  "kind": "word"
+ },
+ {
+  "zh": "地址",
+  "pinyin": "Dìzhǐ",
+  "ru_sound": "ди чжы",
+  "ru": "Адрес",
+  "kind": "word"
+ },
+ {
+  "zh": "零钱",
+  "pinyin": "Língqián",
+  "ru_sound": "лин циэнь",
+  "ru": "Мелочь (деньги)",
+  "kind": "word"
+ },
+ {
+  "zh": "现金",
+  "pinyin": "Xiànjīn",
+  "ru_sound": "сиэнь цзинь",
+  "ru": "Наличные",
+  "kind": "word"
+ },
+ {
+  "zh": "银行卡",
+  "pinyin": "Yínhángkǎ",
+  "ru_sound": "инь хан ка",
+  "ru": "Банковская карта",
+  "kind": "word"
+ },
+ {
+  "zh": "优惠",
+  "pinyin": "Yōuhuì",
+  "ru_sound": "йоу хуэй",
+  "ru": "Скидка, льгота",
+  "kind": "word"
+ },
+ {
+  "zh": "打折",
+  "pinyin": "Dǎzhé",
+  "ru_sound": "да чжэ",
+  "ru": "Делать скидку",
+  "kind": "word"
+ },
+ {
+  "zh": "免费",
+  "pinyin": "Miǎnfèi",
+  "ru_sound": "миэнь фэй",
+  "ru": "Бесплатно",
+  "kind": "word"
+ },
+ {
+  "zh": "付款",
+  "pinyin": "Fùkuǎn",
+  "ru_sound": "фу куань",
+  "ru": "Оплатить",
+  "kind": "word"
+ },
+ {
+  "zh": "发票",
+  "pinyin": "Fāpiào",
+  "ru_sound": "фа пяо",
+  "ru": "Чек, счёт-фактура",
+  "kind": "word"
+ },
+ {
+  "zh": "排队",
+  "pinyin": "Páiduì",
+  "ru_sound": "пай дуэй",
+  "ru": "Стоять в очереди",
+  "kind": "word"
+ },
+ {
+  "zh": "堵车",
+  "pinyin": "Dǔchē",
+  "ru_sound": "ду чэ",
+  "ru": "Пробка на дороге",
+  "kind": "word",
+  "note": "Буквально «машины забиты»."
+ },
+ {
+  "zh": "车站",
+  "pinyin": "Chēzhàn",
+  "ru_sound": "чэ чжань",
+  "ru": "Станция, остановка",
+  "kind": "word"
+ },
+ {
+  "zh": "上车",
+  "pinyin": "Shàngchē",
+  "ru_sound": "шан чэ",
+  "ru": "Садиться в транспорт",
+  "kind": "word"
+ },
+ {
+  "zh": "下车",
+  "pinyin": "Xiàchē",
+  "ru_sound": "ся чэ",
+  "ru": "Выходить из транспорта",
+  "kind": "word"
+ },
+ {
+  "zh": "换乘",
+  "pinyin": "Huànchéng",
+  "ru_sound": "хуань чэн",
+  "ru": "Делать пересадку",
+  "kind": "word"
+ },
+ {
+  "zh": "航班",
+  "pinyin": "Hángbān",
+  "ru_sound": "хан бань",
+  "ru": "Авиарейс",
+  "kind": "word"
+ },
+ {
+  "zh": "登机",
+  "pinyin": "Dēngjī",
+  "ru_sound": "дэн цзи",
+  "ru": "Посадка на самолёт",
+  "kind": "word"
+ },
+ {
+  "zh": "签证",
+  "pinyin": "Qiānzhèng",
+  "ru_sound": "циэнь чжэн",
+  "ru": "Виза",
+  "kind": "word"
+ },
+ {
+  "zh": "海关",
+  "pinyin": "Hǎiguān",
+  "ru_sound": "хай гуань",
+  "ru": "Таможня",
+  "kind": "word"
+ },
+ {
+  "zh": "旅行",
+  "pinyin": "Lǚxíng",
+  "ru_sound": "люй син",
+  "ru": "Путешествие",
+  "kind": "word"
+ },
+ {
+  "zh": "景点",
+  "pinyin": "Jǐngdiǎn",
+  "ru_sound": "цзин диэнь",
+  "ru": "Достопримечательность",
+  "kind": "word"
+ },
+ {
+  "zh": "导游",
+  "pinyin": "Dǎoyóu",
+  "ru_sound": "дао йоу",
+  "ru": "Гид",
+  "kind": "word"
+ },
+ {
+  "zh": "方向",
+  "pinyin": "Fāngxiàng",
+  "ru_sound": "фан сян",
+  "ru": "Направление",
+  "kind": "word"
+ },
+ {
+  "zh": "附近",
+  "pinyin": "Fùjìn",
+  "ru_sound": "фу цзинь",
+  "ru": "Поблизости",
+  "kind": "word"
+ },
+ {
+  "zh": "对面",
+  "pinyin": "Duìmiàn",
+  "ru_sound": "дуэй миэнь",
+  "ru": "Напротив",
+  "kind": "word"
+ },
+ {
+  "zh": "路线",
+  "pinyin": "Lùxiàn",
+  "ru_sound": "лу сиэнь",
+  "ru": "Маршрут",
+  "kind": "word"
+ },
+ {
+  "zh": "出发",
+  "pinyin": "Chūfā",
+  "ru_sound": "чу фа",
+  "ru": "Отправляться",
+  "kind": "word"
+ },
+ {
+  "zh": "到达",
+  "pinyin": "Dàodá",
+  "ru_sound": "дао да",
+  "ru": "Прибывать",
+  "kind": "word"
+ },
+ {
+  "zh": "打车",
+  "pinyin": "Dǎchē",
+  "ru_sound": "да чэ",
+  "ru": "Взять такси",
+  "kind": "word",
+  "note": "Сейчас обычно вызывают через приложение."
+ },
+ {
+  "zh": "步行",
+  "pinyin": "Bùxíng",
+  "ru_sound": "бу син",
+  "ru": "Идти пешком",
+  "kind": "word"
+ },
+ {
+  "zh": "作业",
+  "pinyin": "Zuòyè",
+  "ru_sound": "цзуо е",
+  "ru": "Домашнее задание",
+  "kind": "word"
+ },
+ {
+  "zh": "成绩",
+  "pinyin": "Chéngjì",
+  "ru_sound": "чэн цзи",
+  "ru": "Оценка, результат",
+  "kind": "word"
+ },
+ {
+  "zh": "毕业",
+  "pinyin": "Bìyè",
+  "ru_sound": "би е",
+  "ru": "Окончить учебное заведение",
+  "kind": "word"
+ },
+ {
+  "zh": "专业",
+  "pinyin": "Zhuānyè",
+  "ru_sound": "чжуань е",
+  "ru": "Специальность",
+  "kind": "word"
+ },
+ {
+  "zh": "留学",
+  "pinyin": "Liúxué",
+  "ru_sound": "лиоу сюэ",
+  "ru": "Учиться за границей",
+  "kind": "word"
+ },
+ {
+  "zh": "留学生",
+  "pinyin": "Liúxuéshēng",
+  "ru_sound": "лиоу сюэ шэн",
+  "ru": "Иностранный студент",
+  "kind": "word"
+ },
+ {
+  "zh": "词典",
+  "pinyin": "Cídiǎn",
+  "ru_sound": "цы диэнь",
+  "ru": "Словарь",
+  "kind": "word"
+ },
+ {
+  "zh": "句子",
+  "pinyin": "Jùzi",
+  "ru_sound": "цзюй цзы",
+  "ru": "Предложение",
+  "kind": "word"
+ },
+ {
+  "zh": "语法",
+  "pinyin": "Yǔfǎ",
+  "ru_sound": "юй фа",
+  "ru": "Грамматика",
+  "kind": "word"
+ },
+ {
+  "zh": "发音",
+  "pinyin": "Fāyīn",
+  "ru_sound": "фа инь",
+  "ru": "Произношение",
+  "kind": "word"
+ },
+ {
+  "zh": "口语",
+  "pinyin": "Kǒuyǔ",
+  "ru_sound": "коу юй",
+  "ru": "Разговорная речь",
+  "kind": "word"
+ },
+ {
+  "zh": "笔记",
+  "pinyin": "Bǐjì",
+  "ru_sound": "би цзи",
+  "ru": "Конспект, записи",
+  "kind": "word"
+ },
+ {
+  "zh": "背",
+  "pinyin": "Bèi",
+  "ru_sound": "бэй",
+  "ru": "Спина; учить наизусть",
+  "kind": "word",
+  "note": "背单词 — зубрить слова."
+ },
+ {
+  "zh": "实习",
+  "pinyin": "Shíxí",
+  "ru_sound": "шы си",
+  "ru": "Стажировка",
+  "kind": "word"
+ },
+ {
+  "zh": "上班",
+  "pinyin": "Shàngbān",
+  "ru_sound": "шан бань",
+  "ru": "Идти на работу",
+  "kind": "word"
+ },
+ {
+  "zh": "下班",
+  "pinyin": "Xiàbān",
+  "ru_sound": "ся бань",
+  "ru": "Заканчивать работу",
+  "kind": "word"
+ },
+ {
+  "zh": "请假",
+  "pinyin": "Qǐngjià",
+  "ru_sound": "цин цзя",
+  "ru": "Взять отгул",
+  "kind": "word"
+ },
+ {
+  "zh": "出差",
+  "pinyin": "Chūchāi",
+  "ru_sound": "чу чай",
+  "ru": "Командировка",
+  "kind": "word"
+ },
+ {
+  "zh": "开会",
+  "pinyin": "Kāihuì",
+  "ru_sound": "кай хуэй",
+  "ru": "Проводить совещание",
+  "kind": "word"
+ },
+ {
+  "zh": "团队",
+  "pinyin": "Tuánduì",
+  "ru_sound": "туань дуэй",
+  "ru": "Команда",
+  "kind": "word"
+ },
+ {
+  "zh": "任务",
+  "pinyin": "Rènwu",
+  "ru_sound": "жэнь у",
+  "ru": "Задача",
+  "kind": "word"
+ },
+ {
+  "zh": "压力",
+  "pinyin": "Yālì",
+  "ru_sound": "я ли",
+  "ru": "Давление, стресс",
+  "kind": "word"
+ },
+ {
+  "zh": "加薪",
+  "pinyin": "Jiāxīn",
+  "ru_sound": "цзя синь",
+  "ru": "Повышение зарплаты",
+  "kind": "word"
+ },
+ {
+  "zh": "辞职",
+  "pinyin": "Cízhí",
+  "ru_sound": "цы чжы",
+  "ru": "Уволиться",
+  "kind": "word"
+ },
+ {
+  "zh": "员工",
+  "pinyin": "Yuángōng",
+  "ru_sound": "юэнь гун",
+  "ru": "Сотрудник",
+  "kind": "word"
+ },
+ {
+  "zh": "合作",
+  "pinyin": "Hézuò",
+  "ru_sound": "хэ цзуо",
+  "ru": "Сотрудничать",
+  "kind": "word"
+ },
+ {
+  "zh": "谈判",
+  "pinyin": "Tánpàn",
+  "ru_sound": "тань пань",
+  "ru": "Переговоры",
+  "kind": "word"
+ },
+ {
+  "zh": "预算",
+  "pinyin": "Yùsuàn",
+  "ru_sound": "юй суань",
+  "ru": "Бюджет",
+  "kind": "word"
+ },
+ {
+  "zh": "利润",
+  "pinyin": "Lìrùn",
+  "ru_sound": "ли жуэнь",
+  "ru": "Прибыль",
+  "kind": "word"
+ },
+ {
+  "zh": "市场",
+  "pinyin": "Shìchǎng",
+  "ru_sound": "шы чан",
+  "ru": "Рынок",
+  "kind": "word"
+ },
+ {
+  "zh": "竞争",
+  "pinyin": "Jìngzhēng",
+  "ru_sound": "цзин чжэн",
+  "ru": "Конкуренция",
+  "kind": "word"
+ },
+ {
+  "zh": "创业",
+  "pinyin": "Chuàngyè",
+  "ru_sound": "чуан е",
+  "ru": "Открыть своё дело",
+  "kind": "word"
+ },
+ {
+  "zh": "投资",
+  "pinyin": "Tóuzī",
+  "ru_sound": "тоу цзы",
+  "ru": "Инвестировать",
+  "kind": "word"
+ },
+ {
+  "zh": "屏幕",
+  "pinyin": "Píngmù",
+  "ru_sound": "пин му",
+  "ru": "Экран",
+  "kind": "word"
+ },
+ {
+  "zh": "键盘",
+  "pinyin": "Jiànpán",
+  "ru_sound": "цзиэнь пань",
+  "ru": "Клавиатура",
+  "kind": "word"
+ },
+ {
+  "zh": "鼠标",
+  "pinyin": "Shǔbiāo",
+  "ru_sound": "шу бяо",
+  "ru": "Компьютерная мышь",
+  "kind": "word"
+ },
+ {
+  "zh": "打印",
+  "pinyin": "Dǎyìn",
+  "ru_sound": "да инь",
+  "ru": "Печатать, распечатывать",
+  "kind": "word"
+ },
+ {
+  "zh": "上网",
+  "pinyin": "Shàngwǎng",
+  "ru_sound": "шан ван",
+  "ru": "Выходить в интернет",
+  "kind": "word"
+ },
+ {
+  "zh": "无线网",
+  "pinyin": "Wúxiànwǎng",
+  "ru_sound": "у сиэнь ван",
+  "ru": "Wi-Fi",
+  "kind": "word"
+ },
+ {
+  "zh": "流量",
+  "pinyin": "Liúliàng",
+  "ru_sound": "лиоу лян",
+  "ru": "Мобильный трафик",
+  "kind": "word"
+ },
+ {
+  "zh": "登录",
+  "pinyin": "Dēnglù",
+  "ru_sound": "дэн лу",
+  "ru": "Войти в аккаунт",
+  "kind": "word"
+ },
+ {
+  "zh": "注册",
+  "pinyin": "Zhùcè",
+  "ru_sound": "чжу цэ",
+  "ru": "Регистрироваться",
+  "kind": "word"
+ },
+ {
+  "zh": "搜索",
+  "pinyin": "Sōusuǒ",
+  "ru_sound": "соу суо",
+  "ru": "Искать (в сети)",
+  "kind": "word"
+ },
+ {
+  "zh": "应用",
+  "pinyin": "Yìngyòng",
+  "ru_sound": "ин юн",
+  "ru": "Приложение; применение",
+  "kind": "word"
+ },
+ {
+  "zh": "更新",
+  "pinyin": "Gēngxīn",
+  "ru_sound": "гэн синь",
+  "ru": "Обновление",
+  "kind": "word"
+ },
+ {
+  "zh": "截图",
+  "pinyin": "Jiétú",
+  "ru_sound": "цзе ту",
+  "ru": "Скриншот",
+  "kind": "word"
+ },
+ {
+  "zh": "二维码",
+  "pinyin": "Èrwéimǎ",
+  "ru_sound": "эр вэй ма",
+  "ru": "QR-код",
+  "kind": "word"
+ },
+ {
+  "zh": "表情包",
+  "pinyin": "Biǎoqíngbāo",
+  "ru_sound": "бяо цин бао",
+  "ru": "Стикеры, мемы",
+  "kind": "word",
+  "note": "Картинки-реакции, которыми отвечают в чатах."
+ },
+ {
+  "zh": "机器学习",
+  "pinyin": "Jīqì xuéxí",
+  "ru_sound": "цзи ци сюэ си",
+  "ru": "Машинное обучение",
+  "kind": "word"
+ },
+ {
+  "zh": "大模型",
+  "pinyin": "Dàmóxíng",
+  "ru_sound": "да мо син",
+  "ru": "Большая языковая модель",
+  "kind": "word",
+  "note": "Так называют нейросети вроде ChatGPT."
+ },
+ {
+  "zh": "芯片",
+  "pinyin": "Xīnpiàn",
+  "ru_sound": "синь пиэнь",
+  "ru": "Микрочип",
+  "kind": "word"
+ },
+ {
+  "zh": "无人机",
+  "pinyin": "Wúrénjī",
+  "ru_sound": "у жэнь цзи",
+  "ru": "Дрон",
+  "kind": "word",
+  "note": "Буквально «машина без человека»."
+ },
+ {
+  "zh": "森林",
+  "pinyin": "Sēnlín",
+  "ru_sound": "сэнь линь",
+  "ru": "Лес",
+  "kind": "word"
+ },
+ {
+  "zh": "沙漠",
+  "pinyin": "Shāmò",
+  "ru_sound": "ша мо",
+  "ru": "Пустыня",
+  "kind": "word"
+ },
+ {
+  "zh": "湖",
+  "pinyin": "Hú",
+  "ru_sound": "ху",
+  "ru": "Озеро",
+  "kind": "word"
+ },
+ {
+  "zh": "岛",
+  "pinyin": "Dǎo",
+  "ru_sound": "дао",
+  "ru": "Остров",
+  "kind": "word"
+ },
+ {
+  "zh": "草",
+  "pinyin": "Cǎo",
+  "ru_sound": "цао",
+  "ru": "Трава",
+  "kind": "word"
+ },
+ {
+  "zh": "石头",
+  "pinyin": "Shítou",
+  "ru_sound": "шы тоу",
+  "ru": "Камень",
+  "kind": "word"
+ },
+ {
+  "zh": "空气",
+  "pinyin": "Kōngqì",
+  "ru_sound": "кун ци",
+  "ru": "Воздух",
+  "kind": "word"
+ },
+ {
+  "zh": "阳光",
+  "pinyin": "Yángguāng",
+  "ru_sound": "ян гуан",
+  "ru": "Солнечный свет",
+  "kind": "word"
+ },
+ {
+  "zh": "彩虹",
+  "pinyin": "Cǎihóng",
+  "ru_sound": "цай хун",
+  "ru": "Радуга",
+  "kind": "word"
+ },
+ {
+  "zh": "台风",
+  "pinyin": "Táifēng",
+  "ru_sound": "тай фэн",
+  "ru": "Тайфун",
+  "kind": "word"
+ },
+ {
+  "zh": "地震",
+  "pinyin": "Dìzhèn",
+  "ru_sound": "ди чжэнь",
+  "ru": "Землетрясение",
+  "kind": "word"
+ },
+ {
+  "zh": "环境",
+  "pinyin": "Huánjìng",
+  "ru_sound": "хуань цзин",
+  "ru": "Окружающая среда",
+  "kind": "word"
+ },
+ {
+  "zh": "污染",
+  "pinyin": "Wūrǎn",
+  "ru_sound": "у жань",
+  "ru": "Загрязнение",
+  "kind": "word"
+ },
+ {
+  "zh": "动物",
+  "pinyin": "Dòngwù",
+  "ru_sound": "дун у",
+  "ru": "Животное",
+  "kind": "word"
+ },
+ {
+  "zh": "植物",
+  "pinyin": "Zhíwù",
+  "ru_sound": "чжы у",
+  "ru": "Растение",
+  "kind": "word"
+ },
+ {
+  "zh": "蝴蝶",
+  "pinyin": "Húdié",
+  "ru_sound": "ху де",
+  "ru": "Бабочка",
+  "kind": "word"
+ },
+ {
+  "zh": "蛇",
+  "pinyin": "Shé",
+  "ru_sound": "шэ",
+  "ru": "Змея",
+  "kind": "word"
+ },
+ {
+  "zh": "猴子",
+  "pinyin": "Hóuzi",
+  "ru_sound": "хоу цзы",
+  "ru": "Обезьяна",
+  "kind": "word"
+ },
+ {
+  "zh": "猪",
+  "pinyin": "Zhū",
+  "ru_sound": "чжу",
+  "ru": "Свинья",
+  "kind": "word"
+ },
+ {
+  "zh": "鸭子",
+  "pinyin": "Yāzi",
+  "ru_sound": "я цзы",
+  "ru": "Утка",
+  "kind": "word"
+ },
+ {
+  "zh": "大象",
+  "pinyin": "Dàxiàng",
+  "ru_sound": "да сян",
+  "ru": "Слон",
+  "kind": "word"
+ },
+ {
+  "zh": "狮子",
+  "pinyin": "Shīzi",
+  "ru_sound": "шы цзы",
+  "ru": "Лев",
+  "kind": "word"
+ },
+ {
+  "zh": "熊",
+  "pinyin": "Xióng",
+  "ru_sound": "сюн",
+  "ru": "Медведь",
+  "kind": "word"
+ },
+ {
+  "zh": "腿",
+  "pinyin": "Tuǐ",
+  "ru_sound": "туэй",
+  "ru": "Нога (от бедра)",
+  "kind": "word"
+ },
+ {
+  "zh": "肩膀",
+  "pinyin": "Jiānbǎng",
+  "ru_sound": "цзиэнь бан",
+  "ru": "Плечо",
+  "kind": "word"
+ },
+ {
+  "zh": "嗓子",
+  "pinyin": "Sǎngzi",
+  "ru_sound": "сан цзы",
+  "ru": "Горло",
+  "kind": "word"
+ },
+ {
+  "zh": "咳嗽",
+  "pinyin": "Késou",
+  "ru_sound": "кэ соу",
+  "ru": "Кашлять; кашель",
+  "kind": "word"
+ },
+ {
+  "zh": "过敏",
+  "pinyin": "Guòmǐn",
+  "ru_sound": "гуо минь",
+  "ru": "Аллергия",
+  "kind": "word"
+ },
+ {
+  "zh": "药店",
+  "pinyin": "Yàodiàn",
+  "ru_sound": "яо диэнь",
+  "ru": "Аптека",
+  "kind": "word"
+ },
+ {
+  "zh": "打针",
+  "pinyin": "Dǎzhēn",
+  "ru_sound": "да чжэнь",
+  "ru": "Делать укол",
+  "kind": "word"
+ },
+ {
+  "zh": "睡眠",
+  "pinyin": "Shuìmián",
+  "ru_sound": "шуэй миэнь",
+  "ru": "Сон (как процесс)",
+  "kind": "word"
+ },
+ {
+  "zh": "失眠",
+  "pinyin": "Shīmián",
+  "ru_sound": "шы миэнь",
+  "ru": "Бессонница",
+  "kind": "word"
+ },
+ {
+  "zh": "锻炼",
+  "pinyin": "Duànliàn",
+  "ru_sound": "дуань лиэнь",
+  "ru": "Тренироваться, закаляться",
+  "kind": "word"
+ },
+ {
+  "zh": "健身",
+  "pinyin": "Jiànshēn",
+  "ru_sound": "цзиэнь шэнь",
+  "ru": "Заниматься фитнесом",
+  "kind": "word"
+ },
+ {
+  "zh": "瑜伽",
+  "pinyin": "Yújiā",
+  "ru_sound": "юй цзя",
+  "ru": "Йога",
+  "kind": "word"
+ },
+ {
+  "zh": "爬山",
+  "pinyin": "Páshān",
+  "ru_sound": "па шань",
+  "ru": "Ходить в горы",
+  "kind": "word"
+ },
+ {
+  "zh": "散步",
+  "pinyin": "Sànbù",
+  "ru_sound": "сань бу",
+  "ru": "Гулять, прогуливаться",
+  "kind": "word"
+ },
+ {
+  "zh": "羽毛球",
+  "pinyin": "Yǔmáoqiú",
+  "ru_sound": "юй мао циоу",
+  "ru": "Бадминтон",
+  "kind": "word"
+ },
+ {
+  "zh": "乒乓球",
+  "pinyin": "Pīngpāngqiú",
+  "ru_sound": "пин пан циоу",
+  "ru": "Настольный теннис",
+  "kind": "word",
+  "note": "Один из самых популярных видов спорта в Китае."
+ },
+ {
+  "zh": "网球",
+  "pinyin": "Wǎngqiú",
+  "ru_sound": "ван циоу",
+  "ru": "Теннис",
+  "kind": "word"
+ },
+ {
+  "zh": "滑雪",
+  "pinyin": "Huáxuě",
+  "ru_sound": "хуа сюэ",
+  "ru": "Кататься на лыжах",
+  "kind": "word"
+ },
+ {
+  "zh": "象棋",
+  "pinyin": "Xiàngqí",
+  "ru_sound": "сян ци",
+  "ru": "Сянцзи (китайские шахматы)",
+  "kind": "word"
+ },
+ {
+  "zh": "围棋",
+  "pinyin": "Wéiqí",
+  "ru_sound": "вэй ци",
+  "ru": "Го",
+  "kind": "word"
+ },
+ {
+  "zh": "感觉",
+  "pinyin": "Gǎnjué",
+  "ru_sound": "гань цзюэ",
+  "ru": "Чувствовать; ощущение",
+  "kind": "word"
+ },
+ {
+  "zh": "心情",
+  "pinyin": "Xīnqíng",
+  "ru_sound": "синь цин",
+  "ru": "Настроение",
+  "kind": "word"
+ },
+ {
+  "zh": "浪漫",
+  "pinyin": "Làngmàn",
+  "ru_sound": "лан мань",
+  "ru": "Романтичный",
+  "kind": "word"
+ },
+ {
+  "zh": "温柔",
+  "pinyin": "Wēnróu",
+  "ru_sound": "вэнь жоу",
+  "ru": "Нежный, мягкий",
+  "kind": "word"
+ },
+ {
+  "zh": "善良",
+  "pinyin": "Shànliáng",
+  "ru_sound": "шань лян",
+  "ru": "Добрый",
+  "kind": "word"
+ },
+ {
+  "zh": "诚实",
+  "pinyin": "Chéngshí",
+  "ru_sound": "чэн шы",
+  "ru": "Честный",
+  "kind": "word"
+ },
+ {
+  "zh": "勇敢",
+  "pinyin": "Yǒnggǎn",
+  "ru_sound": "юн гань",
+  "ru": "Храбрый",
+  "kind": "word"
+ },
+ {
+  "zh": "自信",
+  "pinyin": "Zìxìn",
+  "ru_sound": "цзы синь",
+  "ru": "Уверенный в себе",
+  "kind": "word"
+ },
+ {
+  "zh": "谦虚",
+  "pinyin": "Qiānxū",
+  "ru_sound": "циэнь сюй",
+  "ru": "Скромный",
+  "kind": "word"
+ },
+ {
+  "zh": "懒",
+  "pinyin": "Lǎn",
+  "ru_sound": "лань",
+  "ru": "Ленивый",
+  "kind": "word"
+ },
+ {
+  "zh": "笨",
+  "pinyin": "Bèn",
+  "ru_sound": "бэнь",
+  "ru": "Глупый, неуклюжий",
+  "kind": "word"
+ },
+ {
+  "zh": "傻",
+  "pinyin": "Shǎ",
+  "ru_sound": "ша",
+  "ru": "Глупый, наивный",
+  "kind": "word"
+ },
+ {
+  "zh": "疯狂",
+  "pinyin": "Fēngkuáng",
+  "ru_sound": "фэн куан",
+  "ru": "Безумный",
+  "kind": "word"
+ },
+ {
+  "zh": "可怕",
+  "pinyin": "Kěpà",
+  "ru_sound": "кэ па",
+  "ru": "Страшный",
+  "kind": "word"
+ },
+ {
+  "zh": "危险",
+  "pinyin": "Wēixiǎn",
+  "ru_sound": "вэй сиэнь",
+  "ru": "Опасный",
+  "kind": "word"
+ },
+ {
+  "zh": "安全",
+  "pinyin": "Ānquán",
+  "ru_sound": "ань цюэнь",
+  "ru": "Безопасность; безопасный",
+  "kind": "word"
+ },
+ {
+  "zh": "无语",
+  "pinyin": "Wúyǔ",
+  "ru_sound": "у юй",
+  "ru": "Нет слов",
+  "kind": "word",
+  "note": "Интернет-слово: когда от удивления или возмущения нечего сказать."
+ },
+ {
+  "zh": "尴尬",
+  "pinyin": "Gāngà",
+  "ru_sound": "ган га",
+  "ru": "Неловко, неудобно",
+  "kind": "word"
+ },
+ {
+  "zh": "崩溃",
+  "pinyin": "Bēngkuì",
+  "ru_sound": "бэн куэй",
+  "ru": "Не выдержать, «сломаться»",
+  "kind": "word",
+  "note": "Говорят и о технике, и о нервах."
+ },
+ {
+  "zh": "羡慕",
+  "pinyin": "Xiànmù",
+  "ru_sound": "сиэнь му",
+  "ru": "Завидовать (по-хорошему)",
+  "kind": "word"
+ },
+ {
+  "zh": "嫉妒",
+  "pinyin": "Jídù",
+  "ru_sound": "цзи ду",
+  "ru": "Завидовать, ревновать",
+  "kind": "word"
+ },
+ {
+  "zh": "后悔",
+  "pinyin": "Hòuhuǐ",
+  "ru_sound": "хоу хуэй",
+  "ru": "Жалеть о сделанном",
+  "kind": "word"
+ },
+ {
+  "zh": "遗憾",
+  "pinyin": "Yíhàn",
+  "ru_sound": "и хань",
+  "ru": "Сожаление",
+  "kind": "word"
+ },
+ {
+  "zh": "期待",
+  "pinyin": "Qīdài",
+  "ru_sound": "ци дай",
+  "ru": "Ждать с нетерпением",
+  "kind": "word"
+ },
+ {
+  "zh": "满意",
+  "pinyin": "Mǎnyì",
+  "ru_sound": "мань и",
+  "ru": "Быть довольным",
+  "kind": "word"
+ },
+ {
+  "zh": "失望",
+  "pinyin": "Shīwàng",
+  "ru_sound": "шы ван",
+  "ru": "Разочаровываться",
+  "kind": "word"
+ },
+ {
+  "zh": "无奈",
+  "pinyin": "Wúnài",
+  "ru_sound": "у най",
+  "ru": "Ничего не поделаешь",
+  "kind": "word"
+ },
+ {
+  "zh": "感情",
+  "pinyin": "Gǎnqíng",
+  "ru_sound": "гань цин",
+  "ru": "Чувства, привязанность",
+  "kind": "word"
+ },
+ {
+  "zh": "温暖",
+  "pinyin": "Wēnnuǎn",
+  "ru_sound": "вэнь нуань",
+  "ru": "Тёплый, согревающий",
+  "kind": "word"
+ },
+ {
+  "zh": "治愈",
+  "pinyin": "Zhìyù",
+  "ru_sound": "чжы юй",
+  "ru": "Исцелять",
+  "kind": "word",
+  "note": "В соцсетях 治愈系 — то, что успокаивает душу."
+ },
+ {
+  "zh": "文化",
+  "pinyin": "Wénhuà",
+  "ru_sound": "вэнь хуа",
+  "ru": "Культура",
+  "kind": "word"
+ },
+ {
+  "zh": "历史",
+  "pinyin": "Lìshǐ",
+  "ru_sound": "ли шы",
+  "ru": "История",
+  "kind": "word"
+ },
+ {
+  "zh": "传统",
+  "pinyin": "Chuántǒng",
+  "ru_sound": "чуань тун",
+  "ru": "Традиция",
+  "kind": "word"
+ },
+ {
+  "zh": "习俗",
+  "pinyin": "Xísú",
+  "ru_sound": "си су",
+  "ru": "Обычай",
+  "kind": "word"
+ },
+ {
+  "zh": "节目",
+  "pinyin": "Jiémù",
+  "ru_sound": "цзе му",
+  "ru": "Программа, шоу",
+  "kind": "word"
+ },
+ {
+  "zh": "春晚",
+  "pinyin": "Chūnwǎn",
+  "ru_sound": "чуэнь вань",
+  "ru": "Новогодний гала-концерт",
+  "kind": "word",
+  "note": "Телешоу в новогоднюю ночь, которое смотрят миллионы."
+ },
+ {
+  "zh": "庙会",
+  "pinyin": "Miàohuì",
+  "ru_sound": "мяо хуэй",
+  "ru": "Храмовая ярмарка",
+  "kind": "word"
+ },
+ {
+  "zh": "元宵节",
+  "pinyin": "Yuánxiāo Jié",
+  "ru_sound": "юэнь сяо цзе",
+  "ru": "Праздник фонарей",
+  "kind": "word",
+  "note": "Завершает новогодние праздники."
+ },
+ {
+  "zh": "清明节",
+  "pinyin": "Qīngmíng Jié",
+  "ru_sound": "цин мин цзе",
+  "ru": "Цинмин, день поминовения предков",
+  "kind": "word"
+ },
+ {
+  "zh": "国庆节",
+  "pinyin": "Guóqìng Jié",
+  "ru_sound": "гуо цин цзе",
+  "ru": "Национальный праздник Китая",
+  "kind": "word",
+  "note": "Отмечают 1 октября."
+ },
+ {
+  "zh": "孔子",
+  "pinyin": "Kǒngzǐ",
+  "ru_sound": "кун цзы",
+  "ru": "Конфуций",
+  "kind": "word"
+ },
+ {
+  "zh": "老子",
+  "pinyin": "Lǎozǐ",
+  "ru_sound": "лао цзы",
+  "ru": "Лао-цзы",
+  "kind": "word"
+ },
+ {
+  "zh": "唐诗",
+  "pinyin": "Tángshī",
+  "ru_sound": "тан шы",
+  "ru": "Стихи эпохи Тан",
+  "kind": "word"
+ },
+ {
+  "zh": "成语",
+  "pinyin": "Chéngyǔ",
+  "ru_sound": "чэн юй",
+  "ru": "Чэнъюй (идиома)",
+  "kind": "word",
+  "note": "Устойчивое выражение, чаще из четырёх иероглифов."
+ },
+ {
+  "zh": "少数民族",
+  "pinyin": "Shǎoshù mínzú",
+  "ru_sound": "шао шу минь цзу",
+  "ru": "Национальное меньшинство",
+  "kind": "word"
+ },
+ {
+  "zh": "皇帝",
+  "pinyin": "Huángdì",
+  "ru_sound": "хуан ди",
+  "ru": "Император",
+  "kind": "word"
+ },
+ {
+  "zh": "故乡",
+  "pinyin": "Gùxiāng",
+  "ru_sound": "гу сян",
+  "ru": "Родной край",
+  "kind": "word"
+ },
+ {
+  "zh": "首都",
+  "pinyin": "Shǒudū",
+  "ru_sound": "шоу ду",
+  "ru": "Столица",
+  "kind": "word"
+ },
+ {
+  "zh": "省",
+  "pinyin": "Shěng",
+  "ru_sound": "шэн",
+  "ru": "Провинция",
+  "kind": "word"
+ },
+ {
+  "zh": "农村",
+  "pinyin": "Nóngcūn",
+  "ru_sound": "нун цунь",
+  "ru": "Деревня, село",
+  "kind": "word"
+ },
+ {
+  "zh": "政府",
+  "pinyin": "Zhèngfǔ",
+  "ru_sound": "чжэн фу",
+  "ru": "Правительство",
+  "kind": "word"
+ },
+ {
+  "zh": "法律",
+  "pinyin": "Fǎlǜ",
+  "ru_sound": "фа люй",
+  "ru": "Закон",
+  "kind": "word"
+ },
+ {
+  "zh": "新闻",
+  "pinyin": "Xīnwén",
+  "ru_sound": "синь вэнь",
+  "ru": "Новости",
+  "kind": "word"
+ },
+ {
+  "zh": "报纸",
+  "pinyin": "Bàozhǐ",
+  "ru_sound": "бао чжы",
+  "ru": "Газета",
+  "kind": "word"
+ },
+ {
+  "zh": "杂志",
+  "pinyin": "Zázhì",
+  "ru_sound": "цза чжы",
+  "ru": "Журнал",
+  "kind": "word"
+ },
+ {
+  "zh": "广告",
+  "pinyin": "Guǎnggào",
+  "ru_sound": "гуан гао",
+  "ru": "Реклама",
+  "kind": "word"
+ },
+ {
+  "zh": "电视剧",
+  "pinyin": "Diànshìjù",
+  "ru_sound": "диэнь шы цзюй",
+  "ru": "Сериал",
+  "kind": "word"
+ },
+ {
+  "zh": "综艺",
+  "pinyin": "Zōngyì",
+  "ru_sound": "цзун и",
+  "ru": "Развлекательное шоу",
+  "kind": "word"
+ },
+ {
+  "zh": "演员",
+  "pinyin": "Yǎnyuán",
+  "ru_sound": "йэнь юэнь",
+  "ru": "Актёр",
+  "kind": "word"
+ },
+ {
+  "zh": "歌手",
+  "pinyin": "Gēshǒu",
+  "ru_sound": "гэ шоу",
+  "ru": "Певец",
+  "kind": "word"
+ },
+ {
+  "zh": "小说",
+  "pinyin": "Xiǎoshuō",
+  "ru_sound": "сяо шуо",
+  "ru": "Роман, проза",
+  "kind": "word"
+ },
+ {
+  "zh": "诗",
+  "pinyin": "Shī",
+  "ru_sound": "шы",
+  "ru": "Стихотворение",
+  "kind": "word"
+ },
+ {
+  "zh": "艺术",
+  "pinyin": "Yìshù",
+  "ru_sound": "и шу",
+  "ru": "Искусство",
+  "kind": "word"
+ },
+ {
+  "zh": "博物馆",
+  "pinyin": "Bówùguǎn",
+  "ru_sound": "бо у гуань",
+  "ru": "Музей",
+  "kind": "word"
+ },
+ {
+  "zh": "图书馆",
+  "pinyin": "Túshūguǎn",
+  "ru_sound": "ту шу гуань",
+  "ru": "Библиотека",
+  "kind": "word"
+ },
+ {
+  "zh": "剧院",
+  "pinyin": "Jùyuàn",
+  "ru_sound": "цзюй юэнь",
+  "ru": "Театр",
+  "kind": "word"
+ },
+ {
+  "zh": "动漫",
+  "pinyin": "Dòngmàn",
+  "ru_sound": "дун мань",
+  "ru": "Аниме и мультфильмы",
+  "kind": "word"
+ },
+ {
+  "zh": "漫画",
+  "pinyin": "Mànhuà",
+  "ru_sound": "мань хуа",
+  "ru": "Комикс, манга",
+  "kind": "word"
+ },
+ {
+  "zh": "因此",
+  "pinyin": "Yīncǐ",
+  "ru_sound": "инь цы",
+  "ru": "Поэтому (книжное)",
+  "kind": "word"
+ },
+ {
+  "zh": "而且",
+  "pinyin": "Érqiě",
+  "ru_sound": "эр це",
+  "ru": "Более того, к тому же",
+  "kind": "word"
+ },
+ {
+  "zh": "不过",
+  "pinyin": "Búguò",
+  "ru_sound": "бу гуо",
+  "ru": "Однако, впрочем",
+  "kind": "word"
+ },
+ {
+  "zh": "可是",
+  "pinyin": "Kěshì",
+  "ru_sound": "кэ шы",
+  "ru": "Но",
+  "kind": "word"
+ },
+ {
+  "zh": "只有",
+  "pinyin": "Zhǐyǒu",
+  "ru_sound": "чжы йоу",
+  "ru": "Только если",
+  "kind": "word",
+  "note": "Модель: 只有…才…"
+ },
+ {
+  "zh": "除了",
+  "pinyin": "Chúle",
+  "ru_sound": "чу лэ",
+  "ru": "Кроме, помимо",
+  "kind": "word",
+  "note": "Модель: 除了…以外."
+ },
+ {
+  "zh": "即使",
+  "pinyin": "Jíshǐ",
+  "ru_sound": "цзи шы",
+  "ru": "Даже если",
+  "kind": "word"
+ },
+ {
+  "zh": "一边",
+  "pinyin": "Yìbiān",
+  "ru_sound": "и биэнь",
+  "ru": "Одновременно",
+  "kind": "word",
+  "note": "Модель: 一边吃一边看 — есть и смотреть одновременно."
+ },
+ {
+  "zh": "比如",
+  "pinyin": "Bǐrú",
+  "ru_sound": "би жу",
+  "ru": "Например",
+  "kind": "word"
+ },
+ {
+  "zh": "大概",
+  "pinyin": "Dàgài",
+  "ru_sound": "да гай",
+  "ru": "Примерно, приблизительно",
+  "kind": "word"
+ },
+ {
+  "zh": "几乎",
+  "pinyin": "Jīhū",
+  "ru_sound": "цзи ху",
+  "ru": "Почти",
+  "kind": "word"
+ },
+ {
+  "zh": "尤其",
+  "pinyin": "Yóuqí",
+  "ru_sound": "йоу ци",
+  "ru": "Особенно",
+  "kind": "word"
+ },
+ {
+  "zh": "往往",
+  "pinyin": "Wǎngwǎng",
+  "ru_sound": "ван ван",
+  "ru": "Как правило, часто",
+  "kind": "word"
+ },
+ {
+  "zh": "渐渐",
+  "pinyin": "Jiànjiàn",
+  "ru_sound": "цзиэнь цзиэнь",
+  "ru": "Постепенно",
+  "kind": "word"
+ },
+ {
+  "zh": "立刻",
+  "pinyin": "Lìkè",
+  "ru_sound": "ли кэ",
+  "ru": "Немедленно",
+  "kind": "word"
+ },
+ {
+  "zh": "随时",
+  "pinyin": "Suíshí",
+  "ru_sound": "суэй шы",
+  "ru": "В любой момент",
+  "kind": "word"
+ },
+ {
+  "zh": "难道",
+  "pinyin": "Nándào",
+  "ru_sound": "нань дао",
+  "ru": "Неужели",
+  "kind": "word"
+ },
+ {
+  "zh": "简单",
+  "pinyin": "Jiǎndān",
+  "ru_sound": "цзиэнь дань",
+  "ru": "Простой",
+  "kind": "word"
+ },
+ {
+  "zh": "复杂",
+  "pinyin": "Fùzá",
+  "ru_sound": "фу цза",
+  "ru": "Сложный",
+  "kind": "word"
+ },
+ {
+  "zh": "清楚",
+  "pinyin": "Qīngchu",
+  "ru_sound": "цин чу",
+  "ru": "Ясный, понятный",
+  "kind": "word"
+ },
+ {
+  "zh": "正确",
+  "pinyin": "Zhèngquè",
+  "ru_sound": "чжэн цюэ",
+  "ru": "Правильный",
+  "kind": "word"
+ },
+ {
+  "zh": "一般",
+  "pinyin": "Yìbān",
+  "ru_sound": "и бань",
+  "ru": "Обычно; обычный",
+  "kind": "word"
+ },
+ {
+  "zh": "特点",
+  "pinyin": "Tèdiǎn",
+  "ru_sound": "тэ диэнь",
+  "ru": "Особенность",
+  "kind": "word"
+ },
+ {
+  "zh": "原因",
+  "pinyin": "Yuányīn",
+  "ru_sound": "юэнь инь",
+  "ru": "Причина",
+  "kind": "word"
+ },
+ {
+  "zh": "结果",
+  "pinyin": "Jiéguǒ",
+  "ru_sound": "цзе гуо",
+  "ru": "Результат",
+  "kind": "word"
+ },
+ {
+  "zh": "过程",
+  "pinyin": "Guòchéng",
+  "ru_sound": "гуо чэн",
+  "ru": "Процесс",
+  "kind": "word"
+ },
+ {
+  "zh": "办",
+  "pinyin": "Bàn",
+  "ru_sound": "бань",
+  "ru": "Делать, устраивать",
+  "kind": "word",
+  "note": "办手续 — оформлять документы."
+ },
+ {
+  "zh": "手续",
+  "pinyin": "Shǒuxù",
+  "ru_sound": "шоу сюй",
+  "ru": "Формальности, оформление",
+  "kind": "word"
+ },
+ {
+  "zh": "部分",
+  "pinyin": "Bùfen",
+  "ru_sound": "бу фэнь",
+  "ru": "Часть",
+  "kind": "word"
+ },
+ {
+  "zh": "方面",
+  "pinyin": "Fāngmiàn",
+  "ru_sound": "фан миэнь",
+  "ru": "Сторона, аспект",
+  "kind": "word"
+ },
+ {
+  "zh": "方法",
+  "pinyin": "Fāngfǎ",
+  "ru_sound": "фан фа",
+  "ru": "Метод",
+  "kind": "word"
+ },
+ {
+  "zh": "影响",
+  "pinyin": "Yǐngxiǎng",
+  "ru_sound": "ин сян",
+  "ru": "Влияние",
+  "kind": "word"
+ },
+ {
+  "zh": "理由",
+  "pinyin": "Lǐyóu",
+  "ru_sound": "ли йоу",
+  "ru": "Довод, причина",
+  "kind": "word"
+ },
+ {
+  "zh": "意见",
+  "pinyin": "Yìjiàn",
+  "ru_sound": "и цзиэнь",
+  "ru": "Мнение; замечание",
+  "kind": "word"
+ },
+ {
+  "zh": "建议",
+  "pinyin": "Jiànyì",
+  "ru_sound": "цзиэнь и",
+  "ru": "Совет, предложение",
+  "kind": "word"
+ },
+ {
+  "zh": "条件",
+  "pinyin": "Tiáojiàn",
+  "ru_sound": "тяо цзиэнь",
+  "ru": "Условие",
+  "kind": "word"
+ },
+ {
+  "zh": "情况",
+  "pinyin": "Qíngkuàng",
+  "ru_sound": "цин куан",
+  "ru": "Ситуация",
+  "kind": "word"
+ },
+ {
+  "zh": "关心",
+  "pinyin": "Guānxīn",
+  "ru_sound": "гуань синь",
+  "ru": "Проявлять заботу",
+  "kind": "word"
+ },
+ {
+  "zh": "照顾",
+  "pinyin": "Zhàogù",
+  "ru_sound": "чжао гу",
+  "ru": "Заботиться, ухаживать",
+  "kind": "word"
+ },
+ {
+  "zh": "打扰",
+  "pinyin": "Dǎrǎo",
+  "ru_sound": "да жао",
+  "ru": "Беспокоить",
+  "kind": "word"
+ },
+ {
+  "zh": "邀请",
+  "pinyin": "Yāoqǐng",
+  "ru_sound": "яо цин",
+  "ru": "Приглашать",
+  "kind": "word"
+ },
+ {
+  "zh": "介绍",
+  "pinyin": "Jièshào",
+  "ru_sound": "цзе шао",
+  "ru": "Представлять, знакомить",
+  "kind": "word"
+ },
+ {
+  "zh": "拜访",
+  "pinyin": "Bàifǎng",
+  "ru_sound": "бай фан",
+  "ru": "Навещать",
+  "kind": "word"
+ },
+ {
+  "zh": "道歉",
+  "pinyin": "Dàoqiàn",
+  "ru_sound": "дао циэнь",
+  "ru": "Извиняться",
+  "kind": "word"
+ },
+ {
+  "zh": "原谅",
+  "pinyin": "Yuánliàng",
+  "ru_sound": "юэнь лян",
+  "ru": "Прощать",
+  "kind": "word"
+ },
+ {
+  "zh": "误会",
+  "pinyin": "Wùhuì",
+  "ru_sound": "у хуэй",
+  "ru": "Недоразумение",
+  "kind": "word"
+ },
+ {
+  "zh": "吵架",
+  "pinyin": "Chǎojià",
+  "ru_sound": "чао цзя",
+  "ru": "Ссориться",
+  "kind": "word"
+ },
+ {
+  "zh": "骗",
+  "pinyin": "Piàn",
+  "ru_sound": "пиэнь",
+  "ru": "Обманывать",
+  "kind": "word"
+ },
+ {
+  "zh": "放弃",
+  "pinyin": "Fàngqì",
+  "ru_sound": "фан ци",
+  "ru": "Бросить, отказаться",
+  "kind": "word"
+ },
+ {
+  "zh": "坚持",
+  "pinyin": "Jiānchí",
+  "ru_sound": "цзиэнь чы",
+  "ru": "Упорствовать, не сдаваться",
+  "kind": "word"
+ },
+ {
+  "zh": "尝试",
+  "pinyin": "Chángshì",
+  "ru_sound": "чан шы",
+  "ru": "Пробовать",
+  "kind": "word"
+ },
+ {
+  "zh": "适应",
+  "pinyin": "Shìyìng",
+  "ru_sound": "шы ин",
+  "ru": "Привыкать, приспосабливаться",
+  "kind": "word"
+ },
+ {
+  "zh": "提高",
+  "pinyin": "Tígāo",
+  "ru_sound": "ти гао",
+  "ru": "Повышать, улучшать",
+  "kind": "word"
+ },
+ {
+  "zh": "进步",
+  "pinyin": "Jìnbù",
+  "ru_sound": "цзинь бу",
+  "ru": "Прогресс",
+  "kind": "word"
+ },
+ {
+  "zh": "慢慢吃",
+  "pinyin": "Mànmàn chī",
+  "ru_sound": "мань мань чы",
+  "ru": "Кушай не торопясь",
+  "kind": "phrase"
+ },
+ {
+  "zh": "我请你吃饭",
+  "pinyin": "Wǒ qǐng nǐ chīfàn",
+  "ru_sound": "во цин ни чы фань",
+  "ru": "Я приглашаю тебя пообедать",
+  "kind": "phrase"
+ },
+ {
+  "zh": "这里有人吗？",
+  "pinyin": "Zhèlǐ yǒu rén ma?",
+  "ru_sound": "чжэ ли йоу жэнь ма",
+  "ru": "Здесь свободно?",
+  "kind": "phrase",
+  "note": "Буквально «здесь есть люди?»."
+ },
+ {
+  "zh": "借过一下",
+  "pinyin": "Jièguò yíxià",
+  "ru_sound": "цзе гуо и ся",
+  "ru": "Позвольте пройти",
+  "kind": "phrase"
+ },
+ {
+  "zh": "能帮我一下吗？",
+  "pinyin": "Néng bāng wǒ yíxià ma?",
+  "ru_sound": "нэн бан во и ся ма",
+  "ru": "Можете мне помочь?",
+  "kind": "phrase"
+ },
+ {
+  "zh": "我可以坐这里吗？",
+  "pinyin": "Wǒ kěyǐ zuò zhèlǐ ma?",
+  "ru_sound": "во кэ и цзуо чжэ ли ма",
+  "ru": "Можно сесть здесь?",
+  "kind": "phrase"
+ },
+ {
+  "zh": "你看起来很累",
+  "pinyin": "Nǐ kàn qǐlái hěn lèi",
+  "ru_sound": "ни кань ци лай хэнь лэй",
+  "ru": "Ты выглядишь уставшим",
+  "kind": "phrase"
+ },
+ {
+  "zh": "我最近压力很大",
+  "pinyin": "Wǒ zuìjìn yālì hěn dà",
+  "ru_sound": "во цзуэй цзинь я ли хэнь да",
+  "ru": "В последнее время у меня сильный стресс",
+  "kind": "phrase"
+ },
+ {
+  "zh": "好久没见了",
+  "pinyin": "Hǎojiǔ méi jiàn le",
+  "ru_sound": "хао цзиоу мэй цзиэнь лэ",
+  "ru": "Давно не виделись",
+  "kind": "phrase"
+ },
+ {
+  "zh": "你最近忙什么？",
+  "pinyin": "Nǐ zuìjìn máng shénme?",
+  "ru_sound": "ни цзуэй цзинь ман шэнь мэ",
+  "ru": "Чем ты сейчас занят?",
+  "kind": "phrase"
+ },
+ {
+  "zh": "我正在路上",
+  "pinyin": "Wǒ zhèngzài lùshang",
+  "ru_sound": "во чжэн цзай лу шан",
+  "ru": "Я уже в пути",
+  "kind": "phrase"
+ },
+ {
+  "zh": "我马上回复你",
+  "pinyin": "Wǒ mǎshàng huífù nǐ",
+  "ru_sound": "во ма шан хуэй фу ни",
+  "ru": "Я сразу тебе отвечу",
+  "kind": "phrase"
+ },
+ {
+  "zh": "稍等一下",
+  "pinyin": "Shāo děng yíxià",
+  "ru_sound": "шао дэн и ся",
+  "ru": "Минутку, подождите",
+  "kind": "phrase"
+ },
+ {
+  "zh": "没关系，慢慢来",
+  "pinyin": "Méi guānxi, mànmàn lái",
+  "ru_sound": "мэй гуань си мань мань лай",
+  "ru": "Ничего, не спеши",
+  "kind": "phrase"
+ },
+ {
+  "zh": "我来试试",
+  "pinyin": "Wǒ lái shìshi",
+  "ru_sound": "во лай шы шы",
+  "ru": "Я попробую",
+  "kind": "phrase"
+ },
+ {
+  "zh": "我自己来",
+  "pinyin": "Wǒ zìjǐ lái",
+  "ru_sound": "во цзы цзи лай",
+  "ru": "Я сам (сама)",
+  "kind": "phrase"
+ },
+ {
+  "zh": "辛苦你了",
+  "pinyin": "Xīnkǔ nǐ le",
+  "ru_sound": "синь ку ни лэ",
+  "ru": "Спасибо тебе за труды",
+  "kind": "phrase"
+ },
+ {
+  "zh": "太感谢了",
+  "pinyin": "Tài gǎnxiè le",
+  "ru_sound": "тай гань се лэ",
+  "ru": "Огромное спасибо",
+  "kind": "phrase"
+ },
+ {
+  "zh": "不好意思，打扰了",
+  "pinyin": "Bù hǎoyìsi, dǎrǎo le",
+  "ru_sound": "бу хао и сы да жао лэ",
+  "ru": "Простите за беспокойство",
+  "kind": "phrase"
+ },
+ {
+  "zh": "无线网密码是多少？",
+  "pinyin": "Wúxiànwǎng mìmǎ shì duōshao?",
+  "ru_sound": "у сиэнь ван ми ма шы дуо шао",
+  "ru": "Какой пароль от Wi-Fi?",
+  "kind": "phrase"
+ },
+ {
+  "zh": "我的包丢了",
+  "pinyin": "Wǒ de bāo diū le",
+  "ru_sound": "во дэ бао диоу лэ",
+  "ru": "Я потерял (потеряла) сумку",
+  "kind": "phrase"
+ },
+ {
+  "zh": "我想换钱",
+  "pinyin": "Wǒ xiǎng huàn qián",
+  "ru_sound": "во сян хуань циэнь",
+  "ru": "Хочу обменять деньги",
+  "kind": "phrase"
+ },
+ {
+  "zh": "这附近有银行吗？",
+  "pinyin": "Zhè fùjìn yǒu yínháng ma?",
+  "ru_sound": "чжэ фу цзинь йоу инь хан ма",
+  "ru": "Здесь поблизости есть банк?",
+  "kind": "phrase"
+ },
+ {
+  "zh": "请问怎么去故宫？",
+  "pinyin": "Qǐngwèn zěnme qù Gùgōng?",
+  "ru_sound": "цин вэнь цзэнь мэ цюй гу гун",
+  "ru": "Скажите, как пройти в Гугун?",
+  "kind": "phrase"
+ },
+ {
+  "zh": "这里太美了",
+  "pinyin": "Zhèlǐ tài měi le",
+  "ru_sound": "чжэ ли тай мэй лэ",
+  "ru": "Здесь так красиво",
+  "kind": "phrase"
+ },
+ {
+  "zh": "风景真好",
+  "pinyin": "Fēngjǐng zhēn hǎo",
+  "ru_sound": "фэн цзин чжэнь хао",
+  "ru": "Какой чудесный вид",
+  "kind": "phrase"
+ },
+ {
+  "zh": "我想家了",
+  "pinyin": "Wǒ xiǎng jiā le",
+  "ru_sound": "во сян цзя лэ",
+  "ru": "Я скучаю по дому",
+  "kind": "phrase"
+ },
+ {
+  "zh": "你吃过北京烤鸭吗？",
+  "pinyin": "Nǐ chīguo Běijīng kǎoyā ma?",
+  "ru_sound": "ни чы гуо бэй цзин као я ма",
+  "ru": "Ты пробовал пекинскую утку?",
+  "kind": "phrase",
+  "note": "Суффикс 过 показывает жизненный опыт."
+ },
+ {
+  "zh": "我从来没去过",
+  "pinyin": "Wǒ cónglái méi qùguo",
+  "ru_sound": "во цун лай мэй цюй гуо",
+  "ru": "Я там никогда не был (была)",
+  "kind": "phrase"
+ },
+ {
+  "zh": "一起加油吧",
+  "pinyin": "Yìqǐ jiāyóu ba",
+  "ru_sound": "и ци цзя йоу ба",
+  "ru": "Давай держаться вместе",
+  "kind": "phrase"
+ },
+ {
+  "zh": "别想太多",
+  "pinyin": "Bié xiǎng tài duō",
+  "ru_sound": "бе сян тай дуо",
+  "ru": "Не думай слишком много",
+  "kind": "phrase"
+ },
+ {
+  "zh": "睡不着",
+  "pinyin": "Shuì bu zháo",
+  "ru_sound": "шуэй бу чжао",
+  "ru": "Не могу уснуть",
+  "kind": "phrase"
+ },
+ {
+  "zh": "我失眠了",
+  "pinyin": "Wǒ shīmián le",
+  "ru_sound": "во шы миэнь лэ",
+  "ru": "У меня бессонница",
+  "kind": "phrase"
+ },
+ {
+  "zh": "好好休息",
+  "pinyin": "Hǎohǎo xiūxi",
+  "ru_sound": "хао хао сиоу си",
+  "ru": "Хорошенько отдохни",
+  "kind": "phrase"
+ },
+ {
+  "zh": "注意身体",
+  "pinyin": "Zhùyì shēntǐ",
+  "ru_sound": "чжу и шэнь ти",
+  "ru": "Береги здоровье",
+  "kind": "phrase"
+ },
+ {
+  "zh": "别急，慢慢说",
+  "pinyin": "Bié jí, mànmàn shuō",
+  "ru_sound": "бе цзи мань мань шуо",
+  "ru": "Не спеши, говори спокойно",
+  "kind": "phrase"
+ },
+ {
+  "zh": "我想学做中国菜",
+  "pinyin": "Wǒ xiǎng xué zuò Zhōngguó cài",
+  "ru_sound": "во сян сюэ цзуо чжун гуо цай",
+  "ru": "Хочу научиться готовить китайские блюда",
+  "kind": "phrase"
+ },
+ {
+  "zh": "你推荐什么菜？",
+  "pinyin": "Nǐ tuījiàn shénme cài?",
+  "ru_sound": "ни туэй цзиэнь шэнь мэ цай",
+  "ru": "Какое блюдо посоветуешь?",
+  "kind": "phrase"
+ },
+ {
+  "zh": "太辣了",
+  "pinyin": "Tài là le",
+  "ru_sound": "тай ла лэ",
+  "ru": "Слишком остро",
+  "kind": "phrase"
+ },
+ {
+  "zh": "一举两得",
+  "pinyin": "Yì jǔ liǎng dé",
+  "ru_sound": "и цзюй лян дэ",
+  "ru": "Одним ударом двух зайцев",
+  "kind": "phrase",
+  "note": "Чэнъюй: буквально «одно действие — два результата»."
+ },
+ {
+  "zh": "对症下药",
+  "pinyin": "Duì zhèng xià yào",
+  "ru_sound": "дуэй чжэн ся яо",
+  "ru": "Лекарство по болезни: действовать по обстоятельствам",
+  "kind": "phrase"
+ },
+ {
+  "zh": "日积月累",
+  "pinyin": "Rì jī yuè lěi",
+  "ru_sound": "жы цзи юэ лэй",
+  "ru": "Накапливать день за днём",
+  "kind": "phrase",
+  "note": "Идеально про изучение слов."
+ },
+ {
+  "zh": "迫不及待",
+  "pinyin": "Pò bù jí dài",
+  "ru_sound": "по бу цзи дай",
+  "ru": "Не терпится",
+  "kind": "phrase"
+ },
+ {
+  "zh": "理所当然",
+  "pinyin": "Lǐ suǒ dāng rán",
+  "ru_sound": "ли суо дан жань",
+  "ru": "Само собой разумеется",
+  "kind": "phrase"
+ },
+ {
+  "zh": "自言自语",
+  "pinyin": "Zì yán zì yǔ",
+  "ru_sound": "цзы йэнь цзы юй",
+  "ru": "Разговаривать с самим собой",
+  "kind": "phrase"
+ },
+ {
+  "zh": "夜以继日",
+  "pinyin": "Yè yǐ jì rì",
+  "ru_sound": "е и цзи жы",
+  "ru": "Работать день и ночь",
+  "kind": "phrase"
+ },
+ {
+  "zh": "一心一意",
+  "pinyin": "Yì xīn yí yì",
+  "ru_sound": "и синь и и",
+  "ru": "Всем сердцем, целиком",
+  "kind": "phrase"
+ },
+ {
+  "zh": "心满意足",
+  "pinyin": "Xīn mǎn yì zú",
+  "ru_sound": "синь мань и цзу",
+  "ru": "Быть вполне довольным",
+  "kind": "phrase"
+ },
+ {
+  "zh": "爱不释手",
+  "pinyin": "Ài bú shì shǒu",
+  "ru_sound": "ай бу шы шоу",
+  "ru": "Не выпускать из рук от восторга",
+  "kind": "phrase"
+ },
+ {
+  "zh": "无忧无虑",
+  "pinyin": "Wú yōu wú lǜ",
+  "ru_sound": "у йоу у люй",
+  "ru": "Беззаботный",
+  "kind": "phrase"
+ },
+ {
+  "zh": "同舟共济",
+  "pinyin": "Tóng zhōu gòng jì",
+  "ru_sound": "тун чжоу гун цзи",
+  "ru": "В одной лодке: вместе преодолевать трудности",
+  "kind": "phrase"
+ },
+ {
+  "zh": "人山人海",
+  "pinyin": "Rén shān rén hǎi",
+  "ru_sound": "жэнь шань жэнь хай",
+  "ru": "Море людей",
+  "kind": "phrase",
+  "note": "Буквально «люди-горы, люди-море»."
+ },
+ {
+  "zh": "风和日丽",
+  "pinyin": "Fēng hé rì lì",
+  "ru_sound": "фэн хэ жы ли",
+  "ru": "Тихая солнечная погода",
+  "kind": "phrase"
+ },
+ {
+  "zh": "欢天喜地",
+  "pinyin": "Huān tiān xǐ dì",
+  "ru_sound": "хуань тиэнь си ди",
+  "ru": "Ликовать",
+  "kind": "phrase"
+ },
+ {
+  "zh": "一目了然",
+  "pinyin": "Yí mù liǎo rán",
+  "ru_sound": "и му ляо жань",
+  "ru": "Ясно с первого взгляда",
+  "kind": "phrase"
+ },
+ {
+  "zh": "良药苦口",
+  "pinyin": "Liáng yào kǔ kǒu",
+  "ru_sound": "лян яо ку коу",
+  "ru": "Хорошее лекарство горько на вкус",
+  "kind": "phrase",
+  "note": "Правда и польза бывают неприятны."
+ },
+ {
+  "zh": "吃一堑 长一智",
+  "pinyin": "Chī yí qiàn zhǎng yí zhì",
+  "ru_sound": "чы и циэнь чжан и чжы",
+  "ru": "На ошибках учатся",
+  "kind": "phrase",
+  "note": "Буквально «упал в ров — стал умнее»."
+ },
+ {
+  "zh": "天无绝人之路",
+  "pinyin": "Tiān wú jué rén zhī lù",
+  "ru_sound": "тиэнь у цзюэ жэнь чжы лу",
+  "ru": "Безвыходных положений не бывает",
+  "kind": "phrase"
+ },
+ {
+  "zh": "车到山前必有路",
+  "pinyin": "Chē dào shān qián bì yǒu lù",
+  "ru_sound": "чэ дао шань циэнь би йоу лу",
+  "ru": "Доедешь до горы — найдётся и дорога",
+  "kind": "phrase"
+ },
+ {
+  "zh": "花儿 玩儿 哪儿",
+  "pinyin": "huār · wánr · nǎr",
+  "ru_sound": "хуар · вар · нар",
+  "ru": "цветок · развлекаться · где",
+  "kind": "pinyin",
+  "note": "В Пекине в конце слова добавляют -r: язык слегка загибается, слог не удлиняется.",
+  "title": "эризация (儿)"
+ },
+ {
+  "zh": "谢 姐 月 学",
+  "pinyin": "xiè · jiě · yuè · xué",
+  "ru_sound": "се · цзе · юэ · сюэ",
+  "ru": "благодарить · старшая сестра · месяц · учиться",
+  "kind": "pinyin",
+  "note": "ie читается как «е» с мягким началом, üe — как «юэ». После j, q, x, y пишется ue.",
+  "title": "окончания ie и üe"
+ },
+ {
+  "zh": "好 走 来 妹",
+  "pinyin": "hǎo · zǒu · lái · mèi",
+  "ru_sound": "хао · цзоу · лай · мэй",
+  "ru": "хороший · идти · приходить · младшая сестра",
+  "kind": "pinyin",
+  "note": "Двойные гласные читаются слитно: ao — «ао», ou — «оу», ai — «ай», ei — «эй».",
+  "title": "двойные гласные ai, ei, ao, ou"
+ },
+ {
+  "zh": "中 风 东 冷",
+  "pinyin": "zhōng · fēng · dōng · lěng",
+  "ru_sound": "чжун · фэн · дун · лэн",
+  "ru": "середина · ветер · восток · холодный",
+  "kind": "pinyin",
+  "note": "-ong читается как «-ун», -eng — как «-эн». Оба окончания носовые.",
+  "title": "окончания -ong и -eng"
  }
 ]
