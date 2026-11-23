@@ -1,4 +1,4 @@
-import json, math, os, random, time
+import json, math, os, random
 import datetime as dt
 from collections import Counter
 import requests
@@ -7,7 +7,10 @@ TOKEN = os.environ["VK_TOKEN"]
 GROUP = int(os.environ["VK_GROUP_ID"])
 V = "5.199"
 
-# ---------- Хэштеги (правьте здесь) ----------
+# ---------- Настройки времени (UTC) ----------
+TARGET_MINUTE = 39  # Во сколько минут должен выйти пост (например, :39)
+
+# ---------- Хэштеги ----------
 BRAND_TAG = "#оооятебяникогданепредам3"
 CORE_TAGS = ["#китайский", "#китайскийязык", "#выучитькитайский"]
 KIND_TAGS = {"phrase": "#фразы", "word": "#слова", "pinyin": "#пиньинь", "digest": "#повторение"}
@@ -17,23 +20,21 @@ EXTRA_TAGS = [BRAND_TAG, "#ии", "#искусственныйинтеллект
 KIND_WEIGHTS = {"phrase": 45, "word": 50, "pinyin": 5}
 
 # ---------- Воскресное повторение ----------
-# В воскресенье начиная с 16:00 UTC (19:00 по Москве) три записи подряд вместо обычных.
 DIGEST_HOUR_UTC = 16
 DIGEST_PARTS = 3
 DIGEST_MAX_ITEMS = 5
 FORCE_DIGEST = os.environ.get("FORCE_DIGEST") == "1"
 
 # ---------- Ограничение VK ----------
-# В ленте VK показывает первые 14 строк записи без вложений, остальное прячет под «Показать ещё».
 MAX_LINES = 14
-LINE_WIDTH = 46  # осторожная оценка: сколько знаков помещается в строку на экране телефона
+LINE_WIDTH = 46
 
 CIRCLED = "①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳"
 
 
 def api(method, **params):
     params.update(access_token=TOKEN, v=V)
-    r = requests.post(f"https://api.vk.com/method/{method}", data=params, timeout=30).json()
+    r = requests.post(f"https://vk.com{method}", data=params, timeout=30).json()
     if "error" in r:
         raise RuntimeError(r["error"])
     return r["response"]
@@ -47,23 +48,32 @@ def load(path, default):
         return default
 
 
-def wait_for_minute_ending_9():
-    """Ждём ближайшую минуту :09, :19, :29, :39, :49 или :59 (максимум около 10 минут)."""
-    while True:
-        t = dt.datetime.now(dt.timezone.utc)
-        if t.minute % 10 == 9:
-            return
-        time.sleep(60.5 - t.second - t.microsecond / 1e6)
-
-
-if os.environ.get("NO_WAIT") != "1":
-    wait_for_minute_ending_9()
-
 phrases = load("phrases.json", [])
 history = load("history.json", [])
 by_zh = {p["zh"]: p for p in phrases}
-now = dt.datetime.now(dt.timezone.utc).replace(tzinfo=None)
-week_ago = now - dt.timedelta(days=7)
+
+now_utc = dt.datetime.now(dt.timezone.utc)
+now = now_utc.replace(tzinfo=None)
+
+# Защита от дублей: если за последние 90 минут уже был пост (не в ручном режиме), выходим
+if history and os.environ.get("GITHUB_EVENT_NAME") != "workflow_dispatch":
+    last_ts = dt.datetime.fromisoformat(history[-1]["ts"])
+    if (now - last_ts).total_seconds() < 90 * 60:
+        print("Пост за этот интервал уже опубликован. Пропускаем.")
+        exit(0)
+
+# Вычисляем точное время публикации (ближайшие :39 минут в будущем)
+target_dt = now_utc.replace(minute=TARGET_MINUTE, second=0, microsecond=0)
+if target_dt <= now_utc + dt.timedelta(seconds=30):
+    # Если GitHub задержал запуск и :39 уже прошли, публикуем немедленно
+    publish_ts = None
+    record_ts = now
+else:
+    # Ставим в отложку ВК ровно на :39:00
+    publish_ts = int(target_dt.timestamp())
+    record_ts = target_dt.replace(tzinfo=None)
+
+week_ago = record_ts - dt.timedelta(days=7)
 
 
 def ts(h):
@@ -84,7 +94,6 @@ def est_lines(text):
 
 
 def pick_fitting(candidates):
-    """Первый вариант, который помещается в лимит строк; иначе самый компактный."""
     for c in candidates:
         if est_lines(c) <= MAX_LINES:
             return c
@@ -107,12 +116,10 @@ def join(*parts, sep="\n\n"):
 
 
 def block(n, zh, py, snd, ru):
-    """Полный блок: 4 строки, как в обычной записи."""
     return "\n".join([f"{CIRCLED[n - 1]} {zh}", py, snd, ru])
 
 
 def compact_item(n, zh, py, snd, ru):
-    """Компактный блок: 2 строки (3, если не помещается)."""
     first = f"{CIRCLED[n - 1]} {zh} · {py} · {snd}"
     if width(first) <= LINE_WIDTH:
         return first + "\n" + ru
@@ -163,7 +170,7 @@ def build_message(p):
 
 # ---------- Воскресное повторение ----------
 def digest_state():
-    today = f"{now:%Y-%m-%d}"
+    today = f"{record_ts:%Y-%m-%d}"
     done = [h for h in history if h.get("kind") == "digest" and h["zh"].startswith(f"digest-{today}-")]
     return today, done
 
@@ -178,7 +185,7 @@ def digest_pool(done):
         if p and p["kind"] in ("phrase", "word"):
             seen.add(h["zh"])
             items.append(p)
-    random.Random(f"{now:%Y-%m-%d}").shuffle(items)
+    random.Random(f"{record_ts:%Y-%m-%d}").shuffle(items)
     return [p for p in items if p["zh"] not in used]
 
 
@@ -213,18 +220,22 @@ def pick():
 
 
 today, done = digest_state()
-digest_due = (FORCE_DIGEST or (now.weekday() == 6 and now.hour >= DIGEST_HOUR_UTC)) and len(done) < DIGEST_PARTS
+digest_due = (FORCE_DIGEST or (record_ts.weekday() == 6 and record_ts.hour >= DIGEST_HOUR_UTC)) and len(done) < DIGEST_PARTS
 pool = digest_pool(done) if digest_due else []
+
+post_params = {"owner_id": -GROUP, "from_group": 1}
+if publish_ts:
+    post_params["publish_date"] = publish_ts
 
 if len(pool) >= 2:
     part = len(done) + 1
     message, item_ids = build_digest(pool, part)
-    api("wall.post", owner_id=-GROUP, from_group=1, message=message)
-    entry = {"zh": f"digest-{today}-{part}", "kind": "digest", "ts": now.isoformat(), "items": item_ids}
+    api("wall.post", message=message, **post_params)
+    entry = {"zh": f"digest-{today}-{part}", "kind": "digest", "ts": record_ts.isoformat(), "items": item_ids}
 else:
     p = pick()
-    api("wall.post", owner_id=-GROUP, from_group=1, message=build_message(p))
-    entry = {"zh": p["zh"], "kind": p["kind"], "ts": now.isoformat()}
+    api("wall.post", message=build_message(p), **post_params)
+    entry = {"zh": p["zh"], "kind": p["kind"], "ts": record_ts.isoformat()}
 
 history.append(entry)
 history = history[-3000:]
