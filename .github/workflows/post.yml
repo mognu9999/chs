@@ -2,12 +2,18 @@ name: vk-post
 
 on:
   schedule:
-    # Запускаем в :17, скрипт ставит пост в отложку ВК ровно на :39
-    - cron: "17 */2 * * *"
+    # Раз в час. Скрипт сам ставит в отложку VK записи на ближайшие ~20 часов
+    # (слоты каждые 2 часа в :29 UTC), поэтому задержки очереди GitHub не страшны.
+    - cron: "7 * * * *"
   workflow_dispatch:
 
 permissions:
   contents: write
+
+# Два запуска одновременно не пересекаются
+concurrency:
+  group: vk-post
+  cancel-in-progress: false
 
 jobs:
   post:
@@ -19,15 +25,21 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install requests
-      - name: Публикация
+      - name: Планирование публикаций
         run: python post.py
         env:
           VK_TOKEN: ${{ secrets.VK_TOKEN }}
           VK_GROUP_ID: ${{ secrets.VK_GROUP_ID }}
-          GITHUB_EVENT_NAME: ${{ github.event_name }}
       - name: Сохранить историю
+        if: always()
         run: |
           git config user.name "bot"
-          git config user.email "bot@://github.com"
+          git config user.email "bot@users.noreply.github.com"
           git add history.json
-          git diff --cached --quiet || (git commit -m "history" && git pull --rebase && git push)
+          git diff --cached --quiet && exit 0
+          git commit -m "history"
+          for i in 1 2 3 4 5; do
+            git pull --rebase -X theirs && git push && exit 0
+            sleep 5
+          done
+          exit 1
