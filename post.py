@@ -1,12 +1,11 @@
-"""Бот для VK (работает с токеном СООБЩЕСТВА, публикует сразу, без отложки).
+"""Бот для VK: держит в очереди отложенных записей посты на ближайшие часы.
 
-Идея: слоты публикации — каждые 2 часа в :SLOT_MINUTE по UTC. Workflow запускается несколько
-раз вокруг каждого слота, а скрипт сам решает, что делать:
-  * слот вот-вот наступит (до WAIT_MAX_MIN минут) -> дожидается точной минуты и публикует;
-  * слот уже прошёл, но запись не вышла (GitHub опоздал) -> публикует сразу, если опоздание
-    не больше MAX_LATE_MIN минут;
-  * слот уже закрыт (есть в history.json или на стене группы) -> ничего не делает.
-Один слот = ровно одна запись, пропущенный запуск GitHub добирается следующим.
+Как это работает (и почему так надёжнее прежнего варианта):
+  * GitHub Actions запускает скрипт раз в час, но сам скрипт НЕ ждёт нужной минуты.
+  * Скрипт смотрит, какие слоты публикации (каждые 2 часа в :SLOT_MINUTE по UTC)
+    уже заняты отложенными записями в VK, и добавляет недостающие на QUEUE_AHEAD_SLOTS вперёд.
+  * Публикует в нужную минуту сам VK. Задержки или пропуски запусков GitHub больше
+    не влияют: запас очереди перекрывает простой почти на сутки.
 """
 import json, math, os, random, sys, time
 import datetime as dt
@@ -22,8 +21,8 @@ DRY_RUN = os.environ.get("DRY_RUN") == "1"
 SLOT_MINUTE = 29          # минута публикации: 29 (можно поставить 19)
 SLOT_EVERY_HOURS = 2      # шаг между постами
 SLOT_HOUR_OFFSET = 0      # 0 -> 00:29, 02:29 UTC ... (в Москве 03:29, 05:29 ...); 1 -> нечётные часы UTC
-WAIT_MAX_MIN = 4          # если до слота не больше стольких минут — ждём его и публикуем вовремя
-MAX_LATE_MIN = 100        # если слот пропущен, но прошло не больше стольких минут — публикуем сразу
+QUEUE_AHEAD_SLOTS = 10    # сколько ближайших слотов держим заполненными (10 слотов = 20 часов)
+MIN_LEAD_MINUTES = 10     # слот должен быть не ближе этого времени от «сейчас»
 
 # ---------- Хэштеги (правьте здесь) ----------
 BRAND_TAG = "#оооятебяникогданепредам3"
@@ -58,34 +57,13 @@ class VKError(RuntimeError):
         self.code = err.get("error_code") if isinstance(err, dict) else None
 
 
-DEFAULT_VARIANT = {"host": "api.vk.com", "v": V, "bearer": False, "from_group": True}
-# Варианты вызова wall.post: VK меняет правила, поэтому бот сам находит тот, что принимает токен.
-VARIANTS = [
-    DEFAULT_VARIANT,
-    {"host": "api.vk.com", "v": V, "bearer": False, "from_group": False},
-    {"host": "api.vk.com", "v": V, "bearer": True, "from_group": True},
-    {"host": "api.vk.ru", "v": V, "bearer": False, "from_group": True},
-    {"host": "api.vk.ru", "v": V, "bearer": True, "from_group": True},
-    {"host": "api.vk.com", "v": "5.131", "bearer": False, "from_group": True},
-    {"host": "api.vk.com", "v": "5.131", "bearer": False, "from_group": False},
-    {"host": "api.vk.ru", "v": "5.131", "bearer": False, "from_group": False},
-]
-
-
-def api(method, _variant=None, **params):
+def api(method, **params):
     """Вызов VK API с повторами при сетевых сбоях и временных ошибках."""
-    var = _variant or DEFAULT_VARIANT
-    params["v"] = var["v"]
-    headers = {}
-    if var["bearer"]:
-        headers["Authorization"] = f"Bearer {TOKEN}"
-    else:
-        params["access_token"] = TOKEN
+    params.update(access_token=TOKEN, v=V)
     last = None
     for attempt in range(5):
         try:
-            r = requests.post(f"https://{var['host']}/method/{method}", data=params, headers=headers,
-                              timeout=30).json()
+            r = requests.post(f"https://api.vk.com/method/{method}", data=params, timeout=30).json()
         except (requests.RequestException, ValueError) as e:
             last = e
             time.sleep(3 * (attempt + 1))
@@ -98,32 +76,6 @@ def api(method, _variant=None, **params):
             raise VKError(r["error"])
         return r["response"]
     raise RuntimeError(f"VK API недоступен: {last}")
-
-
-def describe(var):
-    return (f"{var['host']} v{var['v']} "
-            f"{'Bearer' if var['bearer'] else 'access_token'} from_group={int(var['from_group'])}")
-
-
-def wall_post(message):
-    """Публикует запись, перебирая варианты вызова, пока VK не примет токен."""
-    last = None
-    for var in VARIANTS:
-        extra = {"from_group": 1} if var["from_group"] else {}
-        try:
-            r = api("wall.post", _variant=var, owner_id=-GROUP, message=message, **extra)
-            if var is not DEFAULT_VARIANT:
-                log(f"ℹ️ Сработал вариант: {describe(var)}")
-            return r
-        except VKError as e:
-            if e.code in (5, 15, 27):     # токен отклонён ДО публикации — пробуем следующий вариант
-                log(f"…вариант {describe(var)} отклонён: код {e.code}")
-                last = e
-                continue
-            raise
-    log("Все варианты отклонены: VK не разрешает ключу сообщества публиковать на стену. "
-        "Пришлите этот лог — нужен другой тип доступа.")
-    raise last
 
 
 def load(path, default):
@@ -310,105 +262,66 @@ def compose(slot):
 
 
 # ---------- Слоты ----------
-def exact_now():
-    return dt.datetime.now(dt.timezone.utc).replace(tzinfo=None, microsecond=0)
-
-
-def slot_candidates(now):
-    """Слоты вокруг «сейчас», от более раннего к более позднему."""
-    day = now.replace(hour=0, minute=0, second=0) - dt.timedelta(days=1)
-    out = []
-    for d in range(3):
+def upcoming_slots(now):
+    earliest = now + dt.timedelta(minutes=MIN_LEAD_MINUTES)
+    day = now.replace(hour=0, minute=0) - dt.timedelta(days=1)
+    slots = []
+    while len(slots) < QUEUE_AHEAD_SLOTS * 3 and day < now + dt.timedelta(days=10):
         for h in range(24):
             if (h - SLOT_HOUR_OFFSET) % SLOT_EVERY_HOURS == 0:
-                out.append((day + dt.timedelta(days=d)).replace(hour=h, minute=SLOT_MINUTE, second=0))
-    return out
+                s = day.replace(hour=h, minute=SLOT_MINUTE)
+                if s >= earliest:
+                    slots.append(s)
+        day += dt.timedelta(days=1)
+    return sorted(slots)[:QUEUE_AHEAD_SLOTS]
 
 
-def pick_slot(now):
-    """Слот, который нужно обработать прямо сейчас, либо None."""
-    soonest = None
-    for s in slot_candidates(now):
-        if now <= s <= now + dt.timedelta(minutes=WAIT_MAX_MIN):
-            return s                      # скоро наступит — ждём и публикуем точно
-        if s < now <= s + dt.timedelta(minutes=MAX_LATE_MIN):
-            soonest = s                   # уже прошёл, но недавно
-    return soonest
-
-
-def already_done(slot):
-    if any(ts(h) == slot for h in history):
-        return True
-    # Страховка: если history.json не успел сохраниться, смотрим на стену группы.
+def postponed_slots():
+    """Занятые слоты по данным VK (источник правды) или None, если VK не отдал список."""
     try:
-        r = api("wall.get", owner_id=-GROUP, count=10)
-        lo = int((slot - dt.timedelta(minutes=5)).replace(tzinfo=dt.timezone.utc).timestamp())
-        return any(it["date"] >= lo and it.get("from_id") == -GROUP for it in r["items"])
+        got, offset = set(), 0
+        while True:
+            r = api("wall.get", owner_id=-GROUP, filter="postponed", count=100, offset=offset)
+            for it in r["items"]:
+                got.add(dt.datetime.fromtimestamp(it["date"], dt.timezone.utc).replace(tzinfo=None, second=0))
+            offset += 100
+            if offset >= r["count"]:
+                return got
     except VKError as e:
-        log(f"⚠️ Не удалось проверить стену ({e.args[0] if e.args else e}); опираюсь на history.json")
-        return False
-
-
-def diag():
-    """Диагностика токена: ничего не публикует."""
-    kind = TOKEN.split(".")[0] + "." + (TOKEN.split(".")[1] if "." in TOKEN else "")
-    log(f"Токен начинается с: {kind[:8]}… (длина {len(TOKEN)}), группа: {GROUP}")
-    tests = [
-        ("groups.getTokenPermissions (только для ключа сообщества)", "groups.getTokenPermissions", {}),
-        ("groups.getById", "groups.getById", {"group_id": GROUP}),
-        ("wall.get (чтение стены)", "wall.get", {"owner_id": -GROUP, "count": 1}),
-        ("users.get (только для пользовательского токена)", "users.get", {}),
-    ]
-    log("--- Проба wall.post без текста (ничего не публикуется): код 100 = токен принят, 5/27 = отклонён ---")
-    for var in VARIANTS:
-        extra = {"from_group": 1} if var["from_group"] else {}
-        try:
-            api("wall.post", _variant=var, owner_id=-GROUP, **extra)
-            log(f"⚠️ {describe(var)}: неожиданно успех")
-        except VKError as e:
-            err = e.args[0] if e.args else {}
-            log(f"{describe(var)}: код {err.get('error_code')} — {err.get('error_msg')}")
-        except Exception as e:
-            log(f"{describe(var)}: {e!r}")
-    log("--- Остальные проверки ---")
-    for title, method, params in tests:
-        try:
-            r = api(method, **params)
-            log(f"✅ {title}: {json.dumps(r, ensure_ascii=False)[:300]}")
-        except VKError as e:
-            err = e.args[0] if e.args else {}
-            log(f"❌ {title}: код {err.get('error_code')} — {err.get('error_msg')}")
-        except Exception as e:
-            log(f"❌ {title}: {e!r}")
+        log(f"⚠️ Не удалось получить отложенные записи ({e}); опираюсь на history.json")
+        return None
 
 
 def main():
-    if os.environ.get("DIAG") == "1":
-        diag()
-        return
-    now = exact_now()
-    slot = pick_slot(now)
-    if slot is None:
-        log(f"{now} UTC: сейчас не время публикации, выхожу.")
-        return
-    if already_done(slot):
-        log(f"{now} UTC: слот {slot} уже опубликован, выхожу.")
-        return
-    message, entry = compose(slot)
-    if now < slot:
-        wait = (slot - now).total_seconds()
-        log(f"Жду до {slot} UTC ({wait:.0f} с)")
+    now = utcnow()
+    slots = upcoming_slots(now)
+    occupied = postponed_slots()
+    if occupied is None:
+        occupied = {ts(h).replace(second=0, microsecond=0) for h in history if ts(h) > now}
+    log(f"Сейчас {now} UTC. Занято слотов в VK: {len(occupied)}. Целевая очередь: {len(slots)}.")
+
+    added = 0
+    for slot in slots:
+        if slot in occupied:
+            continue
+        message, entry = compose(slot)
+        if DRY_RUN:
+            log(f"[DRY] {slot} -> {entry['kind']} {entry['zh']}")
+        else:
+            publish_date = int(slot.replace(tzinfo=dt.timezone.utc).timestamp())
+            try:
+                api("wall.post", owner_id=-GROUP, from_group=1, message=message, publish_date=publish_date)
+            except VKError as e:
+                if e.code == 214:  # на это время уже стоит запись
+                    log(f"Слот {slot} уже занят в VK, пропускаю")
+                    continue
+                raise
+            log(f"✅ Запланировано на {slot} UTC: {entry['zh']}")
+        history.append(entry)
         if not DRY_RUN:
-            time.sleep(wait)
-    elif (now - slot).total_seconds() > 60:
-        log(f"Слот {slot} пропущен на {(now - slot).seconds // 60} мин, публикую сразу")
-    if DRY_RUN:
-        log(f"[DRY] {slot} -> {entry['kind']} {entry['zh']}")
-        return
-    wall_post(message)
-    history.append(entry)
-    save_history()
-    log(f"✅ Опубликовано (слот {slot} UTC): {entry['zh']}")
+            save_history()  # сохраняем сразу: при сбое дальше история не потеряется
+        added += 1
+    log(f"Добавлено записей: {added}")
 
 
 if __name__ == "__main__":
