@@ -8,6 +8,11 @@ on:
     - cron: "44 */2 * * *"
     - cron: "4 1-23/2 * * *"
   workflow_dispatch:
+    inputs:
+      diag:
+        description: "Диагностика токена VK (ничего не публикует)"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -32,6 +37,7 @@ jobs:
         env:
           VK_TOKEN: ${{ secrets.VK_TOKEN }}
           VK_GROUP_ID: ${{ secrets.VK_GROUP_ID }}
+          DIAG: ${{ inputs.diag && '1' || '0' }}
       - name: Сохранить историю
         if: always()
         run: |
