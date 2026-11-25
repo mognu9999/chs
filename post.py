@@ -41,10 +41,11 @@ class VKError(RuntimeError):
 
 def api(method, **params):
     params.update(access_token=TOKEN, v=V)
+    url = "https://" + "api." + "vk.com" + "/method/" + method
     last = None
     for attempt in range(5):
         try:
-            r = requests.post(f"https://vk.com{method}", data=params, timeout=30).json()
+            r = requests.post(url, data=params, timeout=30).json()
         except (requests.RequestException, ValueError) as e:
             last = e
             time.sleep(3 * (attempt + 1))
