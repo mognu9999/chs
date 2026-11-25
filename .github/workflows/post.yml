@@ -2,15 +2,17 @@ name: vk-post
 
 on:
   schedule:
-    # Раз в час. Скрипт сам ставит в отложку VK записи на ближайшие ~20 часов
-    # (слоты каждые 2 часа в :29 UTC), поэтому задержки очереди GitHub не страшны.
-    - cron: "7 * * * *"
+    # Вокруг каждого слота (чётные часы UTC, :29): основной запуск за 2 минуты до слота
+    # и два запасных, если GitHub опоздал или пропустил основной. Лишние запуски ничего не делают.
+    - cron: "27 */2 * * *"
+    - cron: "44 */2 * * *"
+    - cron: "4 1-23/2 * * *"
   workflow_dispatch:
 
 permissions:
   contents: write
 
-# Два запуска одновременно не пересекаются
+# Запуски не пересекаются
 concurrency:
   group: vk-post
   cancel-in-progress: false
@@ -25,7 +27,7 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install requests
-      - name: Планирование публикаций
+      - name: Публикация
         run: python post.py
         env:
           VK_TOKEN: ${{ secrets.VK_TOKEN }}
