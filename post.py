@@ -58,13 +58,34 @@ class VKError(RuntimeError):
         self.code = err.get("error_code") if isinstance(err, dict) else None
 
 
-def api(method, **params):
+DEFAULT_VARIANT = {"host": "api.vk.com", "v": V, "bearer": False, "from_group": True}
+# Варианты вызова wall.post: VK меняет правила, поэтому бот сам находит тот, что принимает токен.
+VARIANTS = [
+    DEFAULT_VARIANT,
+    {"host": "api.vk.com", "v": V, "bearer": False, "from_group": False},
+    {"host": "api.vk.com", "v": V, "bearer": True, "from_group": True},
+    {"host": "api.vk.ru", "v": V, "bearer": False, "from_group": True},
+    {"host": "api.vk.ru", "v": V, "bearer": True, "from_group": True},
+    {"host": "api.vk.com", "v": "5.131", "bearer": False, "from_group": True},
+    {"host": "api.vk.com", "v": "5.131", "bearer": False, "from_group": False},
+    {"host": "api.vk.ru", "v": "5.131", "bearer": False, "from_group": False},
+]
+
+
+def api(method, _variant=None, **params):
     """Вызов VK API с повторами при сетевых сбоях и временных ошибках."""
-    params.update(access_token=TOKEN, v=V)
+    var = _variant or DEFAULT_VARIANT
+    params["v"] = var["v"]
+    headers = {}
+    if var["bearer"]:
+        headers["Authorization"] = f"Bearer {TOKEN}"
+    else:
+        params["access_token"] = TOKEN
     last = None
     for attempt in range(5):
         try:
-            r = requests.post(f"https://api.vk.com/method/{method}", data=params, timeout=30).json()
+            r = requests.post(f"https://{var['host']}/method/{method}", data=params, headers=headers,
+                              timeout=30).json()
         except (requests.RequestException, ValueError) as e:
             last = e
             time.sleep(3 * (attempt + 1))
@@ -77,6 +98,32 @@ def api(method, **params):
             raise VKError(r["error"])
         return r["response"]
     raise RuntimeError(f"VK API недоступен: {last}")
+
+
+def describe(var):
+    return (f"{var['host']} v{var['v']} "
+            f"{'Bearer' if var['bearer'] else 'access_token'} from_group={int(var['from_group'])}")
+
+
+def wall_post(message):
+    """Публикует запись, перебирая варианты вызова, пока VK не примет токен."""
+    last = None
+    for var in VARIANTS:
+        extra = {"from_group": 1} if var["from_group"] else {}
+        try:
+            r = api("wall.post", _variant=var, owner_id=-GROUP, message=message, **extra)
+            if var is not DEFAULT_VARIANT:
+                log(f"ℹ️ Сработал вариант: {describe(var)}")
+            return r
+        except VKError as e:
+            if e.code in (5, 15, 27):     # токен отклонён ДО публикации — пробуем следующий вариант
+                log(f"…вариант {describe(var)} отклонён: код {e.code}")
+                last = e
+                continue
+            raise
+    log("Все варианты отклонены: VK не разрешает ключу сообщества публиковать на стену. "
+        "Пришлите этот лог — нужен другой тип доступа.")
+    raise last
 
 
 def load(path, default):
@@ -312,6 +359,18 @@ def diag():
         ("wall.get (чтение стены)", "wall.get", {"owner_id": -GROUP, "count": 1}),
         ("users.get (только для пользовательского токена)", "users.get", {}),
     ]
+    log("--- Проба wall.post без текста (ничего не публикуется): код 100 = токен принят, 5/27 = отклонён ---")
+    for var in VARIANTS:
+        extra = {"from_group": 1} if var["from_group"] else {}
+        try:
+            api("wall.post", _variant=var, owner_id=-GROUP, **extra)
+            log(f"⚠️ {describe(var)}: неожиданно успех")
+        except VKError as e:
+            err = e.args[0] if e.args else {}
+            log(f"{describe(var)}: код {err.get('error_code')} — {err.get('error_msg')}")
+        except Exception as e:
+            log(f"{describe(var)}: {e!r}")
+    log("--- Остальные проверки ---")
     for title, method, params in tests:
         try:
             r = api(method, **params)
@@ -346,13 +405,7 @@ def main():
     if DRY_RUN:
         log(f"[DRY] {slot} -> {entry['kind']} {entry['zh']}")
         return
-    try:
-        api("wall.post", owner_id=-GROUP, from_group=1, message=message)
-    except VKError as e:
-        if e.code in (5, 15, 27):
-            log("Токен не подходит. Нужен ключ доступа СООБЩЕСТВА с правом «Управление сообществом» и доступом к стене "
-                "(Управление → Работа с API → Ключи доступа).")
-        raise
+    wall_post(message)
     history.append(entry)
     save_history()
     log(f"✅ Опубликовано (слот {slot} UTC): {entry['zh']}")
