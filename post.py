@@ -44,7 +44,7 @@ def api(method, **params):
     last = None
     for attempt in range(5):
         try:
-            r = requests.post(f"https://api.vk.com/method/{method}", data=params, timeout=30).json()
+            r = requests.post(f"https://vk.com{method}", data=params, timeout=30).json()
         except (requests.RequestException, ValueError) as e:
             last = e
             time.sleep(3 * (attempt + 1))
@@ -237,7 +237,6 @@ def compose(now):
 
 def main():
     now = utcnow()
-    # Защита от двойного запуска: если пост уже выходил меньше 90 минут назад, выходим
     if history and (now - ts(history[-1])) < dt.timedelta(minutes=90):
         log(f"Пост уже выходил в {history[-1]['ts']} UTC, пропускаю.")
         return
