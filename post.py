@@ -91,9 +91,9 @@ def tags(kind, level):
     if level == 0:
         t = CORE_TAGS + [kt] + EXTRA_TAGS
     elif level == 1:
-        t = [CORE_TAGS, kt, BRAND_TAG]
+        t = [CORE_TAGS[0], kt, BRAND_TAG]
     else:
-        t = [CORE_TAGS, BRAND_TAG]
+        t = [CORE_TAGS[0], BRAND_TAG]
     return " ".join(x for x in t if x)
 
 
@@ -223,7 +223,7 @@ def regular_for(now):
     week_ago = now - dt.timedelta(days=7)
     recent = Counter(h["zh"] for h in history if ts(h) > week_ago)
     total = Counter(h["zh"] for h in history)
-    kind = random.choices(list(KIND_WEIGHTS), weights=list(KIND_WEIGHTS.values()))
+    kind = random.choices(list(KIND_WEIGHTS), weights=list(KIND_WEIGHTS.values()))[0]
     allowed = [p for p in phrases if recent[p["zh"]] < 2]
     pool = [p for p in allowed if p["kind"] == kind] or allowed or phrases
     least = min(total[p["zh"]] for p in pool)
