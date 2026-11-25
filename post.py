@@ -1,12 +1,3 @@
-"""Бот для VK: держит в очереди отложенных записей посты на ближайшие часы.
-
-Как это работает (и почему так надёжнее прежнего варианта):
-  * GitHub Actions запускает скрипт раз в час, но сам скрипт НЕ ждёт нужной минуты.
-  * Скрипт смотрит, какие слоты публикации (каждые 2 часа в :SLOT_MINUTE по UTC)
-    уже заняты отложенными записями в VK, и добавляет недостающие на QUEUE_AHEAD_SLOTS вперёд.
-  * Публикует в нужную минуту сам VK. Задержки или пропуски запусков GitHub больше
-    не влияют: запас очереди перекрывает простой почти на сутки.
-"""
 import json, math, os, random, sys, time
 import datetime as dt
 from collections import Counter
@@ -17,14 +8,7 @@ GROUP = int(os.environ["VK_GROUP_ID"])
 V = "5.199"
 DRY_RUN = os.environ.get("DRY_RUN") == "1"
 
-# ---------- Расписание (всё по UTC; Москва = UTC+3) ----------
-SLOT_MINUTE = 29          # минута публикации: 29 (можно поставить 19)
-SLOT_EVERY_HOURS = 2      # шаг между постами
-SLOT_HOUR_OFFSET = 0      # 0 -> 00:29, 02:29 UTC ... (в Москве 03:29, 05:29 ...); 1 -> нечётные часы UTC
-QUEUE_AHEAD_SLOTS = 10    # сколько ближайших слотов держим заполненными (10 слотов = 20 часов)
-MIN_LEAD_MINUTES = 10     # слот должен быть не ближе этого времени от «сейчас»
-
-# ---------- Хэштеги (правьте здесь) ----------
+# ---------- Хэштеги ----------
 BRAND_TAG = "#оооятебяникогданепредам3"
 CORE_TAGS = ["#китайский", "#китайскийязык", "#выучитькитайский"]
 KIND_TAGS = {"phrase": "#фразы", "word": "#слова", "pinyin": "#пиньинь", "digest": "#повторение"}
@@ -34,13 +18,11 @@ EXTRA_TAGS = [BRAND_TAG, "#ии", "#искусственныйинтеллект
 KIND_WEIGHTS = {"phrase": 45, "word": 50, "pinyin": 5}
 
 # ---------- Воскресное повторение ----------
-# Слоты воскресенья с 16:00 UTC (19:00 по Москве): первые три подряд — повторение недели.
 DIGEST_HOUR_UTC = 16
 DIGEST_PARTS = 3
 DIGEST_MAX_ITEMS = 5
 
 # ---------- Ограничение VK ----------
-# В ленте VK показывает первые 14 строк записи без вложений, остальное прячет под «Показать ещё».
 MAX_LINES = 14
 LINE_WIDTH = 46
 
@@ -58,7 +40,6 @@ class VKError(RuntimeError):
 
 
 def api(method, **params):
-    """Вызов VK API с повторами при сетевых сбоях и временных ошибках."""
     params.update(access_token=TOKEN, v=V)
     last = None
     for attempt in range(5):
@@ -69,7 +50,7 @@ def api(method, **params):
             time.sleep(3 * (attempt + 1))
             continue
         if "error" in r:
-            if r["error"].get("error_code") in (1, 6, 9, 10) and attempt < 4:  # временные
+            if r["error"].get("error_code") in (1, 6, 9, 10) and attempt < 4:
                 last = VKError(r["error"])
                 time.sleep(3 * (attempt + 1))
                 continue
@@ -90,7 +71,6 @@ def utcnow():
     return dt.datetime.now(dt.timezone.utc).replace(tzinfo=None, second=0, microsecond=0)
 
 
-# ---------- Вёрстка с учётом лимита строк ----------
 def width(s):
     return sum(2 if "\u4e00" <= c <= "\u9fff" else 1 for c in s)
 
@@ -100,7 +80,6 @@ def est_lines(text):
 
 
 def pick_fitting(candidates):
-    """Первый вариант, который помещается в лимит строк; иначе самый компактный."""
     for c in candidates:
         if est_lines(c) <= MAX_LINES:
             return c
@@ -123,12 +102,10 @@ def join(*parts, sep="\n\n"):
 
 
 def block(n, zh, py, snd, ru):
-    """Полный блок: 4 строки, как в обычной записи."""
     return "\n".join([f"{CIRCLED[n - 1]} {zh}", py, snd, ru])
 
 
 def compact_item(n, zh, py, snd, ru):
-    """Компактный блок: 2 строки (3, если не помещается)."""
     first = f"{CIRCLED[n - 1]} {zh} · {py} · {snd}"
     if width(first) <= LINE_WIDTH:
         return first + "\n" + ru
@@ -198,7 +175,6 @@ def build_digest(pool, part):
     return compose_digest(chosen, part), [p["zh"] for p in chosen]
 
 
-# ---------- Состояние ----------
 phrases = load("phrases.json", [])
 history = load("history.json", [])
 by_zh = {p["zh"]: p for p in phrases}
@@ -217,20 +193,18 @@ def save_history():
     os.replace(tmp, "history.json")
 
 
-# ---------- Выбор записи для конкретного слота ----------
-def digest_for(slot):
-    """Возвращает (message, entry) для воскресного повторения или None."""
-    if not (slot.weekday() == 6 and slot.hour >= DIGEST_HOUR_UTC):
+def digest_for(now):
+    if not (now.weekday() == 6 and now.hour >= DIGEST_HOUR_UTC):
         return None
-    day = f"{slot:%Y-%m-%d}"
+    day = f"{now:%Y-%m-%d}"
     done = [h for h in history if h.get("kind") == "digest" and h["zh"].startswith(f"digest-{day}-")]
     if len(done) >= DIGEST_PARTS:
         return None
     used = {z for h in done for z in h.get("items", [])}
-    week_ago = slot - dt.timedelta(days=7)
+    week_ago = now - dt.timedelta(days=7)
     seen, items = set(), []
     for h in history:
-        if h.get("kind") == "digest" or not (week_ago < ts(h) <= slot) or h["zh"] in seen:
+        if h.get("kind") == "digest" or not (week_ago < ts(h) <= now) or h["zh"] in seen:
             continue
         p = by_zh.get(h["zh"])
         if p and p["kind"] in ("phrase", "word"):
@@ -242,11 +216,11 @@ def digest_for(slot):
         return None
     part = len(done) + 1
     message, ids = build_digest(pool, part)
-    return message, {"zh": f"digest-{day}-{part}", "kind": "digest", "ts": slot.isoformat(), "items": ids}
+    return message, {"zh": f"digest-{day}-{part}", "kind": "digest", "ts": now.isoformat(), "items": ids}
 
 
-def regular_for(slot):
-    week_ago = slot - dt.timedelta(days=7)
+def regular_for(now):
+    week_ago = now - dt.timedelta(days=7)
     recent = Counter(h["zh"] for h in history if ts(h) > week_ago)
     total = Counter(h["zh"] for h in history)
     kind = random.choices(list(KIND_WEIGHTS), weights=list(KIND_WEIGHTS.values()))[0]
@@ -254,74 +228,29 @@ def regular_for(slot):
     pool = [p for p in allowed if p["kind"] == kind] or allowed or phrases
     least = min(total[p["zh"]] for p in pool)
     p = random.choice([x for x in pool if total[x["zh"]] == least])
-    return build_message(p), {"zh": p["zh"], "kind": p["kind"], "ts": slot.isoformat()}
+    return build_message(p), {"zh": p["zh"], "kind": p["kind"], "ts": now.isoformat()}
 
 
-def compose(slot):
-    return digest_for(slot) or regular_for(slot)
-
-
-# ---------- Слоты ----------
-def upcoming_slots(now):
-    earliest = now + dt.timedelta(minutes=MIN_LEAD_MINUTES)
-    day = now.replace(hour=0, minute=0) - dt.timedelta(days=1)
-    slots = []
-    while len(slots) < QUEUE_AHEAD_SLOTS * 3 and day < now + dt.timedelta(days=10):
-        for h in range(24):
-            if (h - SLOT_HOUR_OFFSET) % SLOT_EVERY_HOURS == 0:
-                s = day.replace(hour=h, minute=SLOT_MINUTE)
-                if s >= earliest:
-                    slots.append(s)
-        day += dt.timedelta(days=1)
-    return sorted(slots)[:QUEUE_AHEAD_SLOTS]
-
-
-def postponed_slots():
-    """Занятые слоты по данным VK (источник правды) или None, если VK не отдал список."""
-    try:
-        got, offset = set(), 0
-        while True:
-            r = api("wall.get", owner_id=-GROUP, filter="postponed", count=100, offset=offset)
-            for it in r["items"]:
-                got.add(dt.datetime.fromtimestamp(it["date"], dt.timezone.utc).replace(tzinfo=None, second=0))
-            offset += 100
-            if offset >= r["count"]:
-                return got
-    except VKError as e:
-        log(f"⚠️ Не удалось получить отложенные записи ({e}); опираюсь на history.json")
-        return None
+def compose(now):
+    return digest_for(now) or regular_for(now)
 
 
 def main():
     now = utcnow()
-    slots = upcoming_slots(now)
-    occupied = postponed_slots()
-    if occupied is None:
-        occupied = {ts(h).replace(second=0, microsecond=0) for h in history if ts(h) > now}
-    log(f"Сейчас {now} UTC. Занято слотов в VK: {len(occupied)}. Целевая очередь: {len(slots)}.")
+    # Защита от двойного запуска: если пост уже выходил меньше 90 минут назад, выходим
+    if history and (now - ts(history[-1])) < dt.timedelta(minutes=90):
+        log(f"Пост уже выходил в {history[-1]['ts']} UTC, пропускаю.")
+        return
 
-    added = 0
-    for slot in slots:
-        if slot in occupied:
-            continue
-        message, entry = compose(slot)
-        if DRY_RUN:
-            log(f"[DRY] {slot} -> {entry['kind']} {entry['zh']}")
-        else:
-            publish_date = int(slot.replace(tzinfo=dt.timezone.utc).timestamp())
-            try:
-                api("wall.post", owner_id=-GROUP, from_group=1, message=message, publish_date=publish_date)
-            except VKError as e:
-                if e.code == 214:  # на это время уже стоит запись
-                    log(f"Слот {slot} уже занят в VK, пропускаю")
-                    continue
-                raise
-            log(f"✅ Запланировано на {slot} UTC: {entry['zh']}")
-        history.append(entry)
-        if not DRY_RUN:
-            save_history()  # сохраняем сразу: при сбое дальше история не потеряется
-        added += 1
-    log(f"Добавлено записей: {added}")
+    message, entry = compose(now)
+    if DRY_RUN:
+        log(f"[DRY] {now} -> {entry['kind']} {entry['zh']}")
+    else:
+        api("wall.post", owner_id=-GROUP, from_group=1, message=message)
+        log(f"✅ Опубликовано в {now} UTC: {entry['zh']}")
+    history.append(entry)
+    if not DRY_RUN:
+        save_history()
 
 
 if __name__ == "__main__":
