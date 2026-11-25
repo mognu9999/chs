@@ -3,9 +3,8 @@ import datetime as dt
 from collections import Counter
 import requests
 
-TOKEN = os.environ["VK_TOKEN"]
-GROUP = int(os.environ["VK_GROUP_ID"])
-V = "5.199"
+TOKEN = os.environ["TG_TOKEN"]
+CHAT_ID = os.environ["TG_CHAT_ID"]
 DRY_RUN = os.environ.get("DRY_RUN") == "1"
 
 # ---------- Хэштеги ----------
@@ -22,7 +21,7 @@ DIGEST_HOUR_UTC = 16
 DIGEST_PARTS = 3
 DIGEST_MAX_ITEMS = 5
 
-# ---------- Ограничение VK ----------
+# ---------- Ограничение длины ----------
 MAX_LINES = 14
 LINE_WIDTH = 46
 
@@ -33,31 +32,29 @@ def log(*a):
     print(*a, flush=True)
 
 
-class VKError(RuntimeError):
-    def __init__(self, err):
-        super().__init__(err)
-        self.code = err.get("error_code") if isinstance(err, dict) else None
-
-
-def api(method, **params):
-    params.update(access_token=TOKEN, v=V)
-    url = "https://" + "api." + "vk.com" + "/method/" + method
+def send_telegram(text):
+    url = "https://" + "api.telegram.org" + f"/bot{TOKEN}/sendMessage"
+    payload = {
+        "chat_id": CHAT_ID,
+        "text": text,
+        "disable_web_page_preview": True,
+    }
     last = None
     for attempt in range(5):
         try:
-            r = requests.post(url, data=params, timeout=30).json()
+            r = requests.post(url, json=payload, timeout=30).json()
         except (requests.RequestException, ValueError) as e:
             last = e
             time.sleep(3 * (attempt + 1))
             continue
-        if "error" in r:
-            if r["error"].get("error_code") in (1, 6, 9, 10) and attempt < 4:
-                last = VKError(r["error"])
-                time.sleep(3 * (attempt + 1))
-                continue
-            raise VKError(r["error"])
-        return r["response"]
-    raise RuntimeError(f"VK API недоступен: {last}")
+        if r.get("ok"):
+            return r["result"]
+        retry_after = r.get("parameters", {}).get("retry_after")
+        if retry_after and attempt < 4:
+            time.sleep(int(retry_after) + 1)
+            continue
+        raise RuntimeError(f"Telegram API error: {r}")
+    raise RuntimeError(f"Telegram API недоступен: {last}")
 
 
 def load(path, default):
@@ -246,8 +243,8 @@ def main():
     if DRY_RUN:
         log(f"[DRY] {now} -> {entry['kind']} {entry['zh']}")
     else:
-        api("wall.post", owner_id=-GROUP, from_group=1, message=message)
-        log(f"✅ Опубликовано в {now} UTC: {entry['zh']}")
+        send_telegram(message)
+        log(f"✅ Опубликовано в Telegram ({now} UTC): {entry['zh']}")
     history.append(entry)
     if not DRY_RUN:
         save_history()
