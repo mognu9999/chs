@@ -236,7 +236,7 @@ def compose(now):
 
 def main():
     now = utcnow()
-    if history and (now - ts(history[-1])) < dt.timedelta(minutes=110):
+    if history and (now - ts(history[-1])) < dt.timedelta(minutes=95):
         log(f"Пост уже выходил в {history[-1]['ts']} UTC, пропускаю.")
         return
 
