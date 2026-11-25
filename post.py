@@ -302,7 +302,31 @@ def already_done(slot):
         return False
 
 
+def diag():
+    """Диагностика токена: ничего не публикует."""
+    kind = TOKEN.split(".")[0] + "." + (TOKEN.split(".")[1] if "." in TOKEN else "")
+    log(f"Токен начинается с: {kind[:8]}… (длина {len(TOKEN)}), группа: {GROUP}")
+    tests = [
+        ("groups.getTokenPermissions (только для ключа сообщества)", "groups.getTokenPermissions", {}),
+        ("groups.getById", "groups.getById", {"group_id": GROUP}),
+        ("wall.get (чтение стены)", "wall.get", {"owner_id": -GROUP, "count": 1}),
+        ("users.get (только для пользовательского токена)", "users.get", {}),
+    ]
+    for title, method, params in tests:
+        try:
+            r = api(method, **params)
+            log(f"✅ {title}: {json.dumps(r, ensure_ascii=False)[:300]}")
+        except VKError as e:
+            err = e.args[0] if e.args else {}
+            log(f"❌ {title}: код {err.get('error_code')} — {err.get('error_msg')}")
+        except Exception as e:
+            log(f"❌ {title}: {e!r}")
+
+
 def main():
+    if os.environ.get("DIAG") == "1":
+        diag()
+        return
     now = exact_now()
     slot = pick_slot(now)
     if slot is None:
