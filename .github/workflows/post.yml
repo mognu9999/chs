@@ -1,4 +1,4 @@
-name: vk-post
+name: tg-post
 
 on:
   schedule:
@@ -25,10 +25,10 @@ jobs:
       - name: Install dependencies
         run: pip install requests
 
-      - name: Публикация
+      - name: Публикация в Telegram
         env:
-          VK_TOKEN: ${{ secrets.VK_TOKEN }}
-          VK_GROUP_ID: ${{ secrets.VK_GROUP_ID }}
+          TG_TOKEN: ${{ secrets.TG_TOKEN }}
+          TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
         run: python post.py
 
       - name: Сохранить историю
