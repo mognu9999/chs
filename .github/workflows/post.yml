@@ -2,7 +2,7 @@ name: tg-post
 
 on:
   schedule:
-    - cron: "29 */2 * * *"
+    - cron: "29 * * * *"
   workflow_dispatch:
   push:
     branches: [main]
